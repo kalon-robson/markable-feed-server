@@ -1,0 +1,6 @@
+type Test {
+  id: String!
+  text: String!
+  createdAt: Date!
+  updatedAt: Date!
+}

@@ -1,0 +1,76 @@
+directive @inherits(type: String!) on OBJECT
+
+type PaginatedTests implements PaginatedDocs {
+  total: Int!
+  items: [Test!]
+}
+
+input CreateTestInput {
+  text: String!
+}
+
+type Query {
+  tests(limit: Int, offset: Int, where: Where, sortBy: String): PaginatedTests!
+  test(id: String!): Test!
+}
+
+type Mutation {
+  createTest(input: CreateTestInput): Test!
+  updateTest(id: String!, input: CreateTestInput): Test!
+  deleteTest(id: String!): Boolean!
+}
+
+type Test {
+  id: String!
+  text: String!
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+scalar Date
+
+scalar JSON
+
+interface PaginatedDocs {
+  total: Int!
+}
+
+enum WhereFieldMode {
+  default
+  insensitive
+}
+
+input WhereField {
+  equals: JSON
+  contains: JSON
+  not_equals: JSON
+  in: JSON
+  not_in: JSON
+  exists: JSON
+  gt: JSON
+  gte: JSON
+  lt: JSON
+  lte: JSON
+  mode: WhereFieldMode
+}
+
+input RelationWhere {
+  some: Where
+  every: Where
+  none: Where
+  is: Where
+  isNot: Where
+}
+
+input Where {
+  and: [Where]
+  or: [Where]
+  field: String
+  value: WhereField
+  relation: RelationWhere
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}

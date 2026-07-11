@@ -1,0 +1,19 @@
+type PaginatedTests implements PaginatedDocs {
+	total: Int!
+	items: [Test!]
+}
+
+input CreateTestInput {
+	text: String!
+}
+
+type Query {
+	tests(limit: Int, offset: Int, where: Where, sortBy: String): PaginatedTests!
+	test(id: String!): Test!
+}
+
+type Mutation {
+	createTest(input: CreateTestInput): Test!
+	updateTest(id: String!, input: CreateTestInput): Test!
+	deleteTest(id: String!): Boolean!
+}

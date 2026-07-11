@@ -1,0 +1,20 @@
+{
+	"name": "graphql-server-boilerplate",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "server",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"Prisma.prisma",
+				"GraphQL.vscode-graphql",
+				"GraphQL.vscode-graphql-syntax",
+				"dbaeumer.vscode-eslint"
+			]
+		}
+	},
+	"forwardPorts": [
+		9000,
+		5432
+	]
+}

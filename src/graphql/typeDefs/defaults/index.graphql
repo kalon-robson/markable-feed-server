@@ -1,0 +1,43 @@
+scalar Date
+scalar JSON
+
+directive @inherits(type: String!) on OBJECT
+
+interface PaginatedDocs {
+	total: Int!
+}
+
+enum WhereFieldMode {
+	default
+	insensitive
+}
+
+input WhereField {
+	equals: JSON
+	contains: JSON
+	not_equals: JSON
+	in: JSON
+	not_in: JSON
+	exists: JSON
+	gt: JSON
+	gte: JSON
+	lt: JSON
+	lte: JSON
+	mode: WhereFieldMode
+}
+
+input RelationWhere {
+	some: Where
+	every: Where
+	none: Where
+	is: Where
+	isNot: Where
+}
+
+input Where {
+	and: [Where]
+	or: [Where]
+	field: String
+	value: WhereField
+	relation: RelationWhere
+}

@@ -1,0 +1,6 @@
+{
+	"extends": "./tsconfig.json",
+	"include": [
+		"graphql.config.ts"
+	]
+}

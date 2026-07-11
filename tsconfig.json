@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "strict": true,
+  },
+  "include": [
+    "src",
+    "*.d.ts",
+  ],
+  "exclude": [
+    "node_modules",
+    "databases",
+  ],
+}
