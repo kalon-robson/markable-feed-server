@@ -10,7 +10,7 @@ services:
       - ~/.ssh:/home/vscode/.ssh:cached
       - ~/.npmrc:/home/vscode/.npmrc:cached
     command: sleep infinity
-    working_dir: /workspaces/graphql-server-boilerplate
+    working_dir: /workspaces/markable-feed-server
 
   database:
     image: postgres:latest

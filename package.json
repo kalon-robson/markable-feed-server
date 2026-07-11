@@ -1,8 +1,8 @@
 {
-  "name": "graphql-server-boilerplate",
+  "name": "markable-feed-server",
   "version": "0.0.0",
   "description": "This GraphQL server boilerplate provides a basic structure for building servers.",
-  "repository": "git@github.com:innovixx/graphql-server-boilerplate.git",
+  "repository": "git@github.com:innovixx/markable-feed-server.git",
   "author": "Innovixx <support@innovixx.co.uk>",
   "type": "module",
   "scripts": {
