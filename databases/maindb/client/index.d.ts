@@ -33,6 +33,16 @@ export type Session = $Result.DefaultSelection<Prisma.$SessionPayload>
  * 
  */
 export type ActivityLog = $Result.DefaultSelection<Prisma.$ActivityLogPayload>
+/**
+ * Model Stream
+ * 
+ */
+export type Stream = $Result.DefaultSelection<Prisma.$StreamPayload>
+/**
+ * Model StreamSubscription
+ * 
+ */
+export type StreamSubscription = $Result.DefaultSelection<Prisma.$StreamSubscriptionPayload>
 
 /**
  * Enums
@@ -70,6 +80,21 @@ export const ActivityLogEntityType: {
 
 export type ActivityLogEntityType = (typeof ActivityLogEntityType)[keyof typeof ActivityLogEntityType]
 
+
+export const StreamStatus: {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+};
+
+export type StreamStatus = (typeof StreamStatus)[keyof typeof StreamStatus]
+
+
+export const StreamTag: {
+  NEWS: 'NEWS'
+};
+
+export type StreamTag = (typeof StreamTag)[keyof typeof StreamTag]
+
 }
 
 export type UserStatus = $Enums.UserStatus
@@ -87,6 +112,14 @@ export const ActivityLogActionType: typeof $Enums.ActivityLogActionType
 export type ActivityLogEntityType = $Enums.ActivityLogEntityType
 
 export const ActivityLogEntityType: typeof $Enums.ActivityLogEntityType
+
+export type StreamStatus = $Enums.StreamStatus
+
+export const StreamStatus: typeof $Enums.StreamStatus
+
+export type StreamTag = $Enums.StreamTag
+
+export const StreamTag: typeof $Enums.StreamTag
 
 /**
  * ##  Prisma Client ʲˢ
@@ -248,6 +281,26 @@ export class PrismaClient<
     * ```
     */
   get activityLog(): Prisma.ActivityLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.stream`: Exposes CRUD operations for the **Stream** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Streams
+    * const streams = await prisma.stream.findMany()
+    * ```
+    */
+  get stream(): Prisma.StreamDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.streamSubscription`: Exposes CRUD operations for the **StreamSubscription** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more StreamSubscriptions
+    * const streamSubscriptions = await prisma.streamSubscription.findMany()
+    * ```
+    */
+  get streamSubscription(): Prisma.StreamSubscriptionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -685,7 +738,9 @@ export namespace Prisma {
     Test: 'Test',
     User: 'User',
     Session: 'Session',
-    ActivityLog: 'ActivityLog'
+    ActivityLog: 'ActivityLog',
+    Stream: 'Stream',
+    StreamSubscription: 'StreamSubscription'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -701,7 +756,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "test" | "user" | "session" | "activityLog"
+      modelProps: "test" | "user" | "session" | "activityLog" | "stream" | "streamSubscription"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1001,6 +1056,154 @@ export namespace Prisma {
           }
         }
       }
+      Stream: {
+        payload: Prisma.$StreamPayload<ExtArgs>
+        fields: Prisma.StreamFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StreamFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StreamFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>
+          }
+          findFirst: {
+            args: Prisma.StreamFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StreamFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>
+          }
+          findMany: {
+            args: Prisma.StreamFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>[]
+          }
+          create: {
+            args: Prisma.StreamCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>
+          }
+          createMany: {
+            args: Prisma.StreamCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StreamCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>[]
+          }
+          delete: {
+            args: Prisma.StreamDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>
+          }
+          update: {
+            args: Prisma.StreamUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>
+          }
+          deleteMany: {
+            args: Prisma.StreamDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StreamUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StreamUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>[]
+          }
+          upsert: {
+            args: Prisma.StreamUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>
+          }
+          aggregate: {
+            args: Prisma.StreamAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStream>
+          }
+          groupBy: {
+            args: Prisma.StreamGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StreamGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StreamCountArgs<ExtArgs>
+            result: $Utils.Optional<StreamCountAggregateOutputType> | number
+          }
+        }
+      }
+      StreamSubscription: {
+        payload: Prisma.$StreamSubscriptionPayload<ExtArgs>
+        fields: Prisma.StreamSubscriptionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StreamSubscriptionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamSubscriptionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StreamSubscriptionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamSubscriptionPayload>
+          }
+          findFirst: {
+            args: Prisma.StreamSubscriptionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamSubscriptionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StreamSubscriptionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamSubscriptionPayload>
+          }
+          findMany: {
+            args: Prisma.StreamSubscriptionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamSubscriptionPayload>[]
+          }
+          create: {
+            args: Prisma.StreamSubscriptionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamSubscriptionPayload>
+          }
+          createMany: {
+            args: Prisma.StreamSubscriptionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StreamSubscriptionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamSubscriptionPayload>[]
+          }
+          delete: {
+            args: Prisma.StreamSubscriptionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamSubscriptionPayload>
+          }
+          update: {
+            args: Prisma.StreamSubscriptionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamSubscriptionPayload>
+          }
+          deleteMany: {
+            args: Prisma.StreamSubscriptionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StreamSubscriptionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StreamSubscriptionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamSubscriptionPayload>[]
+          }
+          upsert: {
+            args: Prisma.StreamSubscriptionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamSubscriptionPayload>
+          }
+          aggregate: {
+            args: Prisma.StreamSubscriptionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStreamSubscription>
+          }
+          groupBy: {
+            args: Prisma.StreamSubscriptionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StreamSubscriptionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StreamSubscriptionCountArgs<ExtArgs>
+            result: $Utils.Optional<StreamSubscriptionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1113,6 +1316,8 @@ export namespace Prisma {
     user?: UserOmit
     session?: SessionOmit
     activityLog?: ActivityLogOmit
+    stream?: StreamOmit
+    streamSubscription?: StreamSubscriptionOmit
   }
 
   /* Types for Logging */
@@ -1195,11 +1400,13 @@ export namespace Prisma {
   export type UserCountOutputType = {
     sessions: number
     activityLogs: number
+    subscriptions: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     activityLogs?: boolean | UserCountOutputTypeCountActivityLogsArgs
+    subscriptions?: boolean | UserCountOutputTypeCountSubscriptionsArgs
   }
 
   // Custom InputTypes
@@ -1225,6 +1432,44 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountActivityLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ActivityLogWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSubscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StreamSubscriptionWhereInput
+  }
+
+
+  /**
+   * Count Type StreamCountOutputType
+   */
+
+  export type StreamCountOutputType = {
+    subscriptions: number
+  }
+
+  export type StreamCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    subscriptions?: boolean | StreamCountOutputTypeCountSubscriptionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * StreamCountOutputType without action
+   */
+  export type StreamCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamCountOutputType
+     */
+    select?: StreamCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * StreamCountOutputType without action
+   */
+  export type StreamCountOutputTypeCountSubscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StreamSubscriptionWhereInput
   }
 
 
@@ -2491,6 +2736,7 @@ export namespace Prisma {
     deletedAt?: boolean
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     activityLogs?: boolean | User$activityLogsArgs<ExtArgs>
+    subscriptions?: boolean | User$subscriptionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2549,6 +2795,7 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     activityLogs?: boolean | User$activityLogsArgs<ExtArgs>
+    subscriptions?: boolean | User$subscriptionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2559,6 +2806,7 @@ export namespace Prisma {
     objects: {
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       activityLogs: Prisma.$ActivityLogPayload<ExtArgs>[]
+      subscriptions: Prisma.$StreamSubscriptionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2971,6 +3219,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     activityLogs<T extends User$activityLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$activityLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    subscriptions<T extends User$subscriptionsArgs<ExtArgs> = {}>(args?: Subset<T, User$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StreamSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3452,6 +3701,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ActivityLogScalarFieldEnum | ActivityLogScalarFieldEnum[]
+  }
+
+  /**
+   * User.subscriptions
+   */
+  export type User$subscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamSubscription
+     */
+    select?: StreamSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StreamSubscription
+     */
+    omit?: StreamSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamSubscriptionInclude<ExtArgs> | null
+    where?: StreamSubscriptionWhereInput
+    orderBy?: StreamSubscriptionOrderByWithRelationInput | StreamSubscriptionOrderByWithRelationInput[]
+    cursor?: StreamSubscriptionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StreamSubscriptionScalarFieldEnum | StreamSubscriptionScalarFieldEnum[]
   }
 
   /**
@@ -5770,6 +6043,2368 @@ export namespace Prisma {
 
 
   /**
+   * Model Stream
+   */
+
+  export type AggregateStream = {
+    _count: StreamCountAggregateOutputType | null
+    _avg: StreamAvgAggregateOutputType | null
+    _sum: StreamSumAggregateOutputType | null
+    _min: StreamMinAggregateOutputType | null
+    _max: StreamMaxAggregateOutputType | null
+  }
+
+  export type StreamAvgAggregateOutputType = {
+    price: number | null
+    availability: number | null
+  }
+
+  export type StreamSumAggregateOutputType = {
+    price: number | null
+    availability: number[]
+  }
+
+  export type StreamMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    price: number | null
+    excerpt: string | null
+    description: string | null
+    marketingTitle: string | null
+    imageUrl: string | null
+    status: $Enums.StreamStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type StreamMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    price: number | null
+    excerpt: string | null
+    description: string | null
+    marketingTitle: string | null
+    imageUrl: string | null
+    status: $Enums.StreamStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type StreamCountAggregateOutputType = {
+    id: number
+    name: number
+    price: number
+    excerpt: number
+    description: number
+    marketingTitle: number
+    bulletPoints: number
+    imageUrl: number
+    tags: number
+    status: number
+    availability: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type StreamAvgAggregateInputType = {
+    price?: true
+    availability?: true
+  }
+
+  export type StreamSumAggregateInputType = {
+    price?: true
+    availability?: true
+  }
+
+  export type StreamMinAggregateInputType = {
+    id?: true
+    name?: true
+    price?: true
+    excerpt?: true
+    description?: true
+    marketingTitle?: true
+    imageUrl?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type StreamMaxAggregateInputType = {
+    id?: true
+    name?: true
+    price?: true
+    excerpt?: true
+    description?: true
+    marketingTitle?: true
+    imageUrl?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type StreamCountAggregateInputType = {
+    id?: true
+    name?: true
+    price?: true
+    excerpt?: true
+    description?: true
+    marketingTitle?: true
+    bulletPoints?: true
+    imageUrl?: true
+    tags?: true
+    status?: true
+    availability?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type StreamAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Stream to aggregate.
+     */
+    where?: StreamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Streams to fetch.
+     */
+    orderBy?: StreamOrderByWithRelationInput | StreamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StreamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Streams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Streams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Streams
+    **/
+    _count?: true | StreamCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: StreamAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StreamSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StreamMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StreamMaxAggregateInputType
+  }
+
+  export type GetStreamAggregateType<T extends StreamAggregateArgs> = {
+        [P in keyof T & keyof AggregateStream]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStream[P]>
+      : GetScalarType<T[P], AggregateStream[P]>
+  }
+
+
+
+
+  export type StreamGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StreamWhereInput
+    orderBy?: StreamOrderByWithAggregationInput | StreamOrderByWithAggregationInput[]
+    by: StreamScalarFieldEnum[] | StreamScalarFieldEnum
+    having?: StreamScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StreamCountAggregateInputType | true
+    _avg?: StreamAvgAggregateInputType
+    _sum?: StreamSumAggregateInputType
+    _min?: StreamMinAggregateInputType
+    _max?: StreamMaxAggregateInputType
+  }
+
+  export type StreamGroupByOutputType = {
+    id: string
+    name: string
+    price: number
+    excerpt: string
+    description: string | null
+    marketingTitle: string | null
+    bulletPoints: string[]
+    imageUrl: string | null
+    tags: $Enums.StreamTag[]
+    status: $Enums.StreamStatus
+    availability: number[]
+    createdAt: Date
+    updatedAt: Date
+    _count: StreamCountAggregateOutputType | null
+    _avg: StreamAvgAggregateOutputType | null
+    _sum: StreamSumAggregateOutputType | null
+    _min: StreamMinAggregateOutputType | null
+    _max: StreamMaxAggregateOutputType | null
+  }
+
+  type GetStreamGroupByPayload<T extends StreamGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StreamGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StreamGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StreamGroupByOutputType[P]>
+            : GetScalarType<T[P], StreamGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StreamSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    price?: boolean
+    excerpt?: boolean
+    description?: boolean
+    marketingTitle?: boolean
+    bulletPoints?: boolean
+    imageUrl?: boolean
+    tags?: boolean
+    status?: boolean
+    availability?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    subscriptions?: boolean | Stream$subscriptionsArgs<ExtArgs>
+    _count?: boolean | StreamCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["stream"]>
+
+  export type StreamSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    price?: boolean
+    excerpt?: boolean
+    description?: boolean
+    marketingTitle?: boolean
+    bulletPoints?: boolean
+    imageUrl?: boolean
+    tags?: boolean
+    status?: boolean
+    availability?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["stream"]>
+
+  export type StreamSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    price?: boolean
+    excerpt?: boolean
+    description?: boolean
+    marketingTitle?: boolean
+    bulletPoints?: boolean
+    imageUrl?: boolean
+    tags?: boolean
+    status?: boolean
+    availability?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["stream"]>
+
+  export type StreamSelectScalar = {
+    id?: boolean
+    name?: boolean
+    price?: boolean
+    excerpt?: boolean
+    description?: boolean
+    marketingTitle?: boolean
+    bulletPoints?: boolean
+    imageUrl?: boolean
+    tags?: boolean
+    status?: boolean
+    availability?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type StreamOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "price" | "excerpt" | "description" | "marketingTitle" | "bulletPoints" | "imageUrl" | "tags" | "status" | "availability" | "createdAt" | "updatedAt", ExtArgs["result"]["stream"]>
+  export type StreamInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    subscriptions?: boolean | Stream$subscriptionsArgs<ExtArgs>
+    _count?: boolean | StreamCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type StreamIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type StreamIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $StreamPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Stream"
+    objects: {
+      subscriptions: Prisma.$StreamSubscriptionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      price: number
+      excerpt: string
+      description: string | null
+      marketingTitle: string | null
+      bulletPoints: string[]
+      imageUrl: string | null
+      tags: $Enums.StreamTag[]
+      status: $Enums.StreamStatus
+      availability: number[]
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["stream"]>
+    composites: {}
+  }
+
+  type StreamGetPayload<S extends boolean | null | undefined | StreamDefaultArgs> = $Result.GetResult<Prisma.$StreamPayload, S>
+
+  type StreamCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StreamFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StreamCountAggregateInputType | true
+    }
+
+  export interface StreamDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Stream'], meta: { name: 'Stream' } }
+    /**
+     * Find zero or one Stream that matches the filter.
+     * @param {StreamFindUniqueArgs} args - Arguments to find a Stream
+     * @example
+     * // Get one Stream
+     * const stream = await prisma.stream.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StreamFindUniqueArgs>(args: SelectSubset<T, StreamFindUniqueArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Stream that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StreamFindUniqueOrThrowArgs} args - Arguments to find a Stream
+     * @example
+     * // Get one Stream
+     * const stream = await prisma.stream.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StreamFindUniqueOrThrowArgs>(args: SelectSubset<T, StreamFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Stream that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamFindFirstArgs} args - Arguments to find a Stream
+     * @example
+     * // Get one Stream
+     * const stream = await prisma.stream.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StreamFindFirstArgs>(args?: SelectSubset<T, StreamFindFirstArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Stream that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamFindFirstOrThrowArgs} args - Arguments to find a Stream
+     * @example
+     * // Get one Stream
+     * const stream = await prisma.stream.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StreamFindFirstOrThrowArgs>(args?: SelectSubset<T, StreamFindFirstOrThrowArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Streams that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Streams
+     * const streams = await prisma.stream.findMany()
+     * 
+     * // Get first 10 Streams
+     * const streams = await prisma.stream.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const streamWithIdOnly = await prisma.stream.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StreamFindManyArgs>(args?: SelectSubset<T, StreamFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Stream.
+     * @param {StreamCreateArgs} args - Arguments to create a Stream.
+     * @example
+     * // Create one Stream
+     * const Stream = await prisma.stream.create({
+     *   data: {
+     *     // ... data to create a Stream
+     *   }
+     * })
+     * 
+     */
+    create<T extends StreamCreateArgs>(args: SelectSubset<T, StreamCreateArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Streams.
+     * @param {StreamCreateManyArgs} args - Arguments to create many Streams.
+     * @example
+     * // Create many Streams
+     * const stream = await prisma.stream.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StreamCreateManyArgs>(args?: SelectSubset<T, StreamCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Streams and returns the data saved in the database.
+     * @param {StreamCreateManyAndReturnArgs} args - Arguments to create many Streams.
+     * @example
+     * // Create many Streams
+     * const stream = await prisma.stream.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Streams and only return the `id`
+     * const streamWithIdOnly = await prisma.stream.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StreamCreateManyAndReturnArgs>(args?: SelectSubset<T, StreamCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Stream.
+     * @param {StreamDeleteArgs} args - Arguments to delete one Stream.
+     * @example
+     * // Delete one Stream
+     * const Stream = await prisma.stream.delete({
+     *   where: {
+     *     // ... filter to delete one Stream
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StreamDeleteArgs>(args: SelectSubset<T, StreamDeleteArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Stream.
+     * @param {StreamUpdateArgs} args - Arguments to update one Stream.
+     * @example
+     * // Update one Stream
+     * const stream = await prisma.stream.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StreamUpdateArgs>(args: SelectSubset<T, StreamUpdateArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Streams.
+     * @param {StreamDeleteManyArgs} args - Arguments to filter Streams to delete.
+     * @example
+     * // Delete a few Streams
+     * const { count } = await prisma.stream.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StreamDeleteManyArgs>(args?: SelectSubset<T, StreamDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Streams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Streams
+     * const stream = await prisma.stream.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StreamUpdateManyArgs>(args: SelectSubset<T, StreamUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Streams and returns the data updated in the database.
+     * @param {StreamUpdateManyAndReturnArgs} args - Arguments to update many Streams.
+     * @example
+     * // Update many Streams
+     * const stream = await prisma.stream.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Streams and only return the `id`
+     * const streamWithIdOnly = await prisma.stream.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StreamUpdateManyAndReturnArgs>(args: SelectSubset<T, StreamUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Stream.
+     * @param {StreamUpsertArgs} args - Arguments to update or create a Stream.
+     * @example
+     * // Update or create a Stream
+     * const stream = await prisma.stream.upsert({
+     *   create: {
+     *     // ... data to create a Stream
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Stream we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StreamUpsertArgs>(args: SelectSubset<T, StreamUpsertArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Streams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamCountArgs} args - Arguments to filter Streams to count.
+     * @example
+     * // Count the number of Streams
+     * const count = await prisma.stream.count({
+     *   where: {
+     *     // ... the filter for the Streams we want to count
+     *   }
+     * })
+    **/
+    count<T extends StreamCountArgs>(
+      args?: Subset<T, StreamCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StreamCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Stream.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StreamAggregateArgs>(args: Subset<T, StreamAggregateArgs>): Prisma.PrismaPromise<GetStreamAggregateType<T>>
+
+    /**
+     * Group by Stream.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StreamGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StreamGroupByArgs['orderBy'] }
+        : { orderBy?: StreamGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StreamGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStreamGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Stream model
+   */
+  readonly fields: StreamFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Stream.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StreamClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    subscriptions<T extends Stream$subscriptionsArgs<ExtArgs> = {}>(args?: Subset<T, Stream$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StreamSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Stream model
+   */
+  interface StreamFieldRefs {
+    readonly id: FieldRef<"Stream", 'String'>
+    readonly name: FieldRef<"Stream", 'String'>
+    readonly price: FieldRef<"Stream", 'Float'>
+    readonly excerpt: FieldRef<"Stream", 'String'>
+    readonly description: FieldRef<"Stream", 'String'>
+    readonly marketingTitle: FieldRef<"Stream", 'String'>
+    readonly bulletPoints: FieldRef<"Stream", 'String[]'>
+    readonly imageUrl: FieldRef<"Stream", 'String'>
+    readonly tags: FieldRef<"Stream", 'StreamTag[]'>
+    readonly status: FieldRef<"Stream", 'StreamStatus'>
+    readonly availability: FieldRef<"Stream", 'Int[]'>
+    readonly createdAt: FieldRef<"Stream", 'DateTime'>
+    readonly updatedAt: FieldRef<"Stream", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Stream findUnique
+   */
+  export type StreamFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * Filter, which Stream to fetch.
+     */
+    where: StreamWhereUniqueInput
+  }
+
+  /**
+   * Stream findUniqueOrThrow
+   */
+  export type StreamFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * Filter, which Stream to fetch.
+     */
+    where: StreamWhereUniqueInput
+  }
+
+  /**
+   * Stream findFirst
+   */
+  export type StreamFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * Filter, which Stream to fetch.
+     */
+    where?: StreamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Streams to fetch.
+     */
+    orderBy?: StreamOrderByWithRelationInput | StreamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Streams.
+     */
+    cursor?: StreamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Streams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Streams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Streams.
+     */
+    distinct?: StreamScalarFieldEnum | StreamScalarFieldEnum[]
+  }
+
+  /**
+   * Stream findFirstOrThrow
+   */
+  export type StreamFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * Filter, which Stream to fetch.
+     */
+    where?: StreamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Streams to fetch.
+     */
+    orderBy?: StreamOrderByWithRelationInput | StreamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Streams.
+     */
+    cursor?: StreamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Streams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Streams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Streams.
+     */
+    distinct?: StreamScalarFieldEnum | StreamScalarFieldEnum[]
+  }
+
+  /**
+   * Stream findMany
+   */
+  export type StreamFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * Filter, which Streams to fetch.
+     */
+    where?: StreamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Streams to fetch.
+     */
+    orderBy?: StreamOrderByWithRelationInput | StreamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Streams.
+     */
+    cursor?: StreamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Streams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Streams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Streams.
+     */
+    distinct?: StreamScalarFieldEnum | StreamScalarFieldEnum[]
+  }
+
+  /**
+   * Stream create
+   */
+  export type StreamCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Stream.
+     */
+    data: XOR<StreamCreateInput, StreamUncheckedCreateInput>
+  }
+
+  /**
+   * Stream createMany
+   */
+  export type StreamCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Streams.
+     */
+    data: StreamCreateManyInput | StreamCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Stream createManyAndReturn
+   */
+  export type StreamCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * The data used to create many Streams.
+     */
+    data: StreamCreateManyInput | StreamCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Stream update
+   */
+  export type StreamUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Stream.
+     */
+    data: XOR<StreamUpdateInput, StreamUncheckedUpdateInput>
+    /**
+     * Choose, which Stream to update.
+     */
+    where: StreamWhereUniqueInput
+  }
+
+  /**
+   * Stream updateMany
+   */
+  export type StreamUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Streams.
+     */
+    data: XOR<StreamUpdateManyMutationInput, StreamUncheckedUpdateManyInput>
+    /**
+     * Filter which Streams to update
+     */
+    where?: StreamWhereInput
+    /**
+     * Limit how many Streams to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Stream updateManyAndReturn
+   */
+  export type StreamUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * The data used to update Streams.
+     */
+    data: XOR<StreamUpdateManyMutationInput, StreamUncheckedUpdateManyInput>
+    /**
+     * Filter which Streams to update
+     */
+    where?: StreamWhereInput
+    /**
+     * Limit how many Streams to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Stream upsert
+   */
+  export type StreamUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Stream to update in case it exists.
+     */
+    where: StreamWhereUniqueInput
+    /**
+     * In case the Stream found by the `where` argument doesn't exist, create a new Stream with this data.
+     */
+    create: XOR<StreamCreateInput, StreamUncheckedCreateInput>
+    /**
+     * In case the Stream was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StreamUpdateInput, StreamUncheckedUpdateInput>
+  }
+
+  /**
+   * Stream delete
+   */
+  export type StreamDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * Filter which Stream to delete.
+     */
+    where: StreamWhereUniqueInput
+  }
+
+  /**
+   * Stream deleteMany
+   */
+  export type StreamDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Streams to delete
+     */
+    where?: StreamWhereInput
+    /**
+     * Limit how many Streams to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Stream.subscriptions
+   */
+  export type Stream$subscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamSubscription
+     */
+    select?: StreamSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StreamSubscription
+     */
+    omit?: StreamSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamSubscriptionInclude<ExtArgs> | null
+    where?: StreamSubscriptionWhereInput
+    orderBy?: StreamSubscriptionOrderByWithRelationInput | StreamSubscriptionOrderByWithRelationInput[]
+    cursor?: StreamSubscriptionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StreamSubscriptionScalarFieldEnum | StreamSubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * Stream without action
+   */
+  export type StreamDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model StreamSubscription
+   */
+
+  export type AggregateStreamSubscription = {
+    _count: StreamSubscriptionCountAggregateOutputType | null
+    _avg: StreamSubscriptionAvgAggregateOutputType | null
+    _sum: StreamSubscriptionSumAggregateOutputType | null
+    _min: StreamSubscriptionMinAggregateOutputType | null
+    _max: StreamSubscriptionMaxAggregateOutputType | null
+  }
+
+  export type StreamSubscriptionAvgAggregateOutputType = {
+    price: number | null
+    selectedDays: number | null
+  }
+
+  export type StreamSubscriptionSumAggregateOutputType = {
+    price: number | null
+    selectedDays: number[]
+  }
+
+  export type StreamSubscriptionMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    streamId: string | null
+    price: number | null
+    startDate: Date | null
+    cancelledAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type StreamSubscriptionMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    streamId: string | null
+    price: number | null
+    startDate: Date | null
+    cancelledAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type StreamSubscriptionCountAggregateOutputType = {
+    id: number
+    userId: number
+    streamId: number
+    price: number
+    selectedDays: number
+    startDate: number
+    cancelledAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type StreamSubscriptionAvgAggregateInputType = {
+    price?: true
+    selectedDays?: true
+  }
+
+  export type StreamSubscriptionSumAggregateInputType = {
+    price?: true
+    selectedDays?: true
+  }
+
+  export type StreamSubscriptionMinAggregateInputType = {
+    id?: true
+    userId?: true
+    streamId?: true
+    price?: true
+    startDate?: true
+    cancelledAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type StreamSubscriptionMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    streamId?: true
+    price?: true
+    startDate?: true
+    cancelledAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type StreamSubscriptionCountAggregateInputType = {
+    id?: true
+    userId?: true
+    streamId?: true
+    price?: true
+    selectedDays?: true
+    startDate?: true
+    cancelledAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type StreamSubscriptionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StreamSubscription to aggregate.
+     */
+    where?: StreamSubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StreamSubscriptions to fetch.
+     */
+    orderBy?: StreamSubscriptionOrderByWithRelationInput | StreamSubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StreamSubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StreamSubscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StreamSubscriptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned StreamSubscriptions
+    **/
+    _count?: true | StreamSubscriptionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: StreamSubscriptionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StreamSubscriptionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StreamSubscriptionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StreamSubscriptionMaxAggregateInputType
+  }
+
+  export type GetStreamSubscriptionAggregateType<T extends StreamSubscriptionAggregateArgs> = {
+        [P in keyof T & keyof AggregateStreamSubscription]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStreamSubscription[P]>
+      : GetScalarType<T[P], AggregateStreamSubscription[P]>
+  }
+
+
+
+
+  export type StreamSubscriptionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StreamSubscriptionWhereInput
+    orderBy?: StreamSubscriptionOrderByWithAggregationInput | StreamSubscriptionOrderByWithAggregationInput[]
+    by: StreamSubscriptionScalarFieldEnum[] | StreamSubscriptionScalarFieldEnum
+    having?: StreamSubscriptionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StreamSubscriptionCountAggregateInputType | true
+    _avg?: StreamSubscriptionAvgAggregateInputType
+    _sum?: StreamSubscriptionSumAggregateInputType
+    _min?: StreamSubscriptionMinAggregateInputType
+    _max?: StreamSubscriptionMaxAggregateInputType
+  }
+
+  export type StreamSubscriptionGroupByOutputType = {
+    id: string
+    userId: string
+    streamId: string
+    price: number
+    selectedDays: number[]
+    startDate: Date
+    cancelledAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: StreamSubscriptionCountAggregateOutputType | null
+    _avg: StreamSubscriptionAvgAggregateOutputType | null
+    _sum: StreamSubscriptionSumAggregateOutputType | null
+    _min: StreamSubscriptionMinAggregateOutputType | null
+    _max: StreamSubscriptionMaxAggregateOutputType | null
+  }
+
+  type GetStreamSubscriptionGroupByPayload<T extends StreamSubscriptionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StreamSubscriptionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StreamSubscriptionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StreamSubscriptionGroupByOutputType[P]>
+            : GetScalarType<T[P], StreamSubscriptionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StreamSubscriptionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    streamId?: boolean
+    price?: boolean
+    selectedDays?: boolean
+    startDate?: boolean
+    cancelledAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    stream?: boolean | StreamDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["streamSubscription"]>
+
+  export type StreamSubscriptionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    streamId?: boolean
+    price?: boolean
+    selectedDays?: boolean
+    startDate?: boolean
+    cancelledAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    stream?: boolean | StreamDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["streamSubscription"]>
+
+  export type StreamSubscriptionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    streamId?: boolean
+    price?: boolean
+    selectedDays?: boolean
+    startDate?: boolean
+    cancelledAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    stream?: boolean | StreamDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["streamSubscription"]>
+
+  export type StreamSubscriptionSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    streamId?: boolean
+    price?: boolean
+    selectedDays?: boolean
+    startDate?: boolean
+    cancelledAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type StreamSubscriptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "streamId" | "price" | "selectedDays" | "startDate" | "cancelledAt" | "createdAt" | "updatedAt", ExtArgs["result"]["streamSubscription"]>
+  export type StreamSubscriptionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    stream?: boolean | StreamDefaultArgs<ExtArgs>
+  }
+  export type StreamSubscriptionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    stream?: boolean | StreamDefaultArgs<ExtArgs>
+  }
+  export type StreamSubscriptionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    stream?: boolean | StreamDefaultArgs<ExtArgs>
+  }
+
+  export type $StreamSubscriptionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "StreamSubscription"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      stream: Prisma.$StreamPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      streamId: string
+      price: number
+      selectedDays: number[]
+      startDate: Date
+      cancelledAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["streamSubscription"]>
+    composites: {}
+  }
+
+  type StreamSubscriptionGetPayload<S extends boolean | null | undefined | StreamSubscriptionDefaultArgs> = $Result.GetResult<Prisma.$StreamSubscriptionPayload, S>
+
+  type StreamSubscriptionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StreamSubscriptionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StreamSubscriptionCountAggregateInputType | true
+    }
+
+  export interface StreamSubscriptionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StreamSubscription'], meta: { name: 'StreamSubscription' } }
+    /**
+     * Find zero or one StreamSubscription that matches the filter.
+     * @param {StreamSubscriptionFindUniqueArgs} args - Arguments to find a StreamSubscription
+     * @example
+     * // Get one StreamSubscription
+     * const streamSubscription = await prisma.streamSubscription.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StreamSubscriptionFindUniqueArgs>(args: SelectSubset<T, StreamSubscriptionFindUniqueArgs<ExtArgs>>): Prisma__StreamSubscriptionClient<$Result.GetResult<Prisma.$StreamSubscriptionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one StreamSubscription that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StreamSubscriptionFindUniqueOrThrowArgs} args - Arguments to find a StreamSubscription
+     * @example
+     * // Get one StreamSubscription
+     * const streamSubscription = await prisma.streamSubscription.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StreamSubscriptionFindUniqueOrThrowArgs>(args: SelectSubset<T, StreamSubscriptionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StreamSubscriptionClient<$Result.GetResult<Prisma.$StreamSubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StreamSubscription that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamSubscriptionFindFirstArgs} args - Arguments to find a StreamSubscription
+     * @example
+     * // Get one StreamSubscription
+     * const streamSubscription = await prisma.streamSubscription.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StreamSubscriptionFindFirstArgs>(args?: SelectSubset<T, StreamSubscriptionFindFirstArgs<ExtArgs>>): Prisma__StreamSubscriptionClient<$Result.GetResult<Prisma.$StreamSubscriptionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StreamSubscription that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamSubscriptionFindFirstOrThrowArgs} args - Arguments to find a StreamSubscription
+     * @example
+     * // Get one StreamSubscription
+     * const streamSubscription = await prisma.streamSubscription.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StreamSubscriptionFindFirstOrThrowArgs>(args?: SelectSubset<T, StreamSubscriptionFindFirstOrThrowArgs<ExtArgs>>): Prisma__StreamSubscriptionClient<$Result.GetResult<Prisma.$StreamSubscriptionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more StreamSubscriptions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamSubscriptionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all StreamSubscriptions
+     * const streamSubscriptions = await prisma.streamSubscription.findMany()
+     * 
+     * // Get first 10 StreamSubscriptions
+     * const streamSubscriptions = await prisma.streamSubscription.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const streamSubscriptionWithIdOnly = await prisma.streamSubscription.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StreamSubscriptionFindManyArgs>(args?: SelectSubset<T, StreamSubscriptionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StreamSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a StreamSubscription.
+     * @param {StreamSubscriptionCreateArgs} args - Arguments to create a StreamSubscription.
+     * @example
+     * // Create one StreamSubscription
+     * const StreamSubscription = await prisma.streamSubscription.create({
+     *   data: {
+     *     // ... data to create a StreamSubscription
+     *   }
+     * })
+     * 
+     */
+    create<T extends StreamSubscriptionCreateArgs>(args: SelectSubset<T, StreamSubscriptionCreateArgs<ExtArgs>>): Prisma__StreamSubscriptionClient<$Result.GetResult<Prisma.$StreamSubscriptionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many StreamSubscriptions.
+     * @param {StreamSubscriptionCreateManyArgs} args - Arguments to create many StreamSubscriptions.
+     * @example
+     * // Create many StreamSubscriptions
+     * const streamSubscription = await prisma.streamSubscription.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StreamSubscriptionCreateManyArgs>(args?: SelectSubset<T, StreamSubscriptionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many StreamSubscriptions and returns the data saved in the database.
+     * @param {StreamSubscriptionCreateManyAndReturnArgs} args - Arguments to create many StreamSubscriptions.
+     * @example
+     * // Create many StreamSubscriptions
+     * const streamSubscription = await prisma.streamSubscription.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many StreamSubscriptions and only return the `id`
+     * const streamSubscriptionWithIdOnly = await prisma.streamSubscription.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StreamSubscriptionCreateManyAndReturnArgs>(args?: SelectSubset<T, StreamSubscriptionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StreamSubscriptionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a StreamSubscription.
+     * @param {StreamSubscriptionDeleteArgs} args - Arguments to delete one StreamSubscription.
+     * @example
+     * // Delete one StreamSubscription
+     * const StreamSubscription = await prisma.streamSubscription.delete({
+     *   where: {
+     *     // ... filter to delete one StreamSubscription
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StreamSubscriptionDeleteArgs>(args: SelectSubset<T, StreamSubscriptionDeleteArgs<ExtArgs>>): Prisma__StreamSubscriptionClient<$Result.GetResult<Prisma.$StreamSubscriptionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one StreamSubscription.
+     * @param {StreamSubscriptionUpdateArgs} args - Arguments to update one StreamSubscription.
+     * @example
+     * // Update one StreamSubscription
+     * const streamSubscription = await prisma.streamSubscription.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StreamSubscriptionUpdateArgs>(args: SelectSubset<T, StreamSubscriptionUpdateArgs<ExtArgs>>): Prisma__StreamSubscriptionClient<$Result.GetResult<Prisma.$StreamSubscriptionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more StreamSubscriptions.
+     * @param {StreamSubscriptionDeleteManyArgs} args - Arguments to filter StreamSubscriptions to delete.
+     * @example
+     * // Delete a few StreamSubscriptions
+     * const { count } = await prisma.streamSubscription.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StreamSubscriptionDeleteManyArgs>(args?: SelectSubset<T, StreamSubscriptionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StreamSubscriptions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamSubscriptionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many StreamSubscriptions
+     * const streamSubscription = await prisma.streamSubscription.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StreamSubscriptionUpdateManyArgs>(args: SelectSubset<T, StreamSubscriptionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StreamSubscriptions and returns the data updated in the database.
+     * @param {StreamSubscriptionUpdateManyAndReturnArgs} args - Arguments to update many StreamSubscriptions.
+     * @example
+     * // Update many StreamSubscriptions
+     * const streamSubscription = await prisma.streamSubscription.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more StreamSubscriptions and only return the `id`
+     * const streamSubscriptionWithIdOnly = await prisma.streamSubscription.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StreamSubscriptionUpdateManyAndReturnArgs>(args: SelectSubset<T, StreamSubscriptionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StreamSubscriptionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one StreamSubscription.
+     * @param {StreamSubscriptionUpsertArgs} args - Arguments to update or create a StreamSubscription.
+     * @example
+     * // Update or create a StreamSubscription
+     * const streamSubscription = await prisma.streamSubscription.upsert({
+     *   create: {
+     *     // ... data to create a StreamSubscription
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the StreamSubscription we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StreamSubscriptionUpsertArgs>(args: SelectSubset<T, StreamSubscriptionUpsertArgs<ExtArgs>>): Prisma__StreamSubscriptionClient<$Result.GetResult<Prisma.$StreamSubscriptionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of StreamSubscriptions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamSubscriptionCountArgs} args - Arguments to filter StreamSubscriptions to count.
+     * @example
+     * // Count the number of StreamSubscriptions
+     * const count = await prisma.streamSubscription.count({
+     *   where: {
+     *     // ... the filter for the StreamSubscriptions we want to count
+     *   }
+     * })
+    **/
+    count<T extends StreamSubscriptionCountArgs>(
+      args?: Subset<T, StreamSubscriptionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StreamSubscriptionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a StreamSubscription.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamSubscriptionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StreamSubscriptionAggregateArgs>(args: Subset<T, StreamSubscriptionAggregateArgs>): Prisma.PrismaPromise<GetStreamSubscriptionAggregateType<T>>
+
+    /**
+     * Group by StreamSubscription.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamSubscriptionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StreamSubscriptionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StreamSubscriptionGroupByArgs['orderBy'] }
+        : { orderBy?: StreamSubscriptionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StreamSubscriptionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStreamSubscriptionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the StreamSubscription model
+   */
+  readonly fields: StreamSubscriptionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for StreamSubscription.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StreamSubscriptionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    stream<T extends StreamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StreamDefaultArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the StreamSubscription model
+   */
+  interface StreamSubscriptionFieldRefs {
+    readonly id: FieldRef<"StreamSubscription", 'String'>
+    readonly userId: FieldRef<"StreamSubscription", 'String'>
+    readonly streamId: FieldRef<"StreamSubscription", 'String'>
+    readonly price: FieldRef<"StreamSubscription", 'Float'>
+    readonly selectedDays: FieldRef<"StreamSubscription", 'Int[]'>
+    readonly startDate: FieldRef<"StreamSubscription", 'DateTime'>
+    readonly cancelledAt: FieldRef<"StreamSubscription", 'DateTime'>
+    readonly createdAt: FieldRef<"StreamSubscription", 'DateTime'>
+    readonly updatedAt: FieldRef<"StreamSubscription", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * StreamSubscription findUnique
+   */
+  export type StreamSubscriptionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamSubscription
+     */
+    select?: StreamSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StreamSubscription
+     */
+    omit?: StreamSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamSubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which StreamSubscription to fetch.
+     */
+    where: StreamSubscriptionWhereUniqueInput
+  }
+
+  /**
+   * StreamSubscription findUniqueOrThrow
+   */
+  export type StreamSubscriptionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamSubscription
+     */
+    select?: StreamSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StreamSubscription
+     */
+    omit?: StreamSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamSubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which StreamSubscription to fetch.
+     */
+    where: StreamSubscriptionWhereUniqueInput
+  }
+
+  /**
+   * StreamSubscription findFirst
+   */
+  export type StreamSubscriptionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamSubscription
+     */
+    select?: StreamSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StreamSubscription
+     */
+    omit?: StreamSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamSubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which StreamSubscription to fetch.
+     */
+    where?: StreamSubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StreamSubscriptions to fetch.
+     */
+    orderBy?: StreamSubscriptionOrderByWithRelationInput | StreamSubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StreamSubscriptions.
+     */
+    cursor?: StreamSubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StreamSubscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StreamSubscriptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StreamSubscriptions.
+     */
+    distinct?: StreamSubscriptionScalarFieldEnum | StreamSubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * StreamSubscription findFirstOrThrow
+   */
+  export type StreamSubscriptionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamSubscription
+     */
+    select?: StreamSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StreamSubscription
+     */
+    omit?: StreamSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamSubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which StreamSubscription to fetch.
+     */
+    where?: StreamSubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StreamSubscriptions to fetch.
+     */
+    orderBy?: StreamSubscriptionOrderByWithRelationInput | StreamSubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StreamSubscriptions.
+     */
+    cursor?: StreamSubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StreamSubscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StreamSubscriptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StreamSubscriptions.
+     */
+    distinct?: StreamSubscriptionScalarFieldEnum | StreamSubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * StreamSubscription findMany
+   */
+  export type StreamSubscriptionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamSubscription
+     */
+    select?: StreamSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StreamSubscription
+     */
+    omit?: StreamSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamSubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which StreamSubscriptions to fetch.
+     */
+    where?: StreamSubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StreamSubscriptions to fetch.
+     */
+    orderBy?: StreamSubscriptionOrderByWithRelationInput | StreamSubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing StreamSubscriptions.
+     */
+    cursor?: StreamSubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StreamSubscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StreamSubscriptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StreamSubscriptions.
+     */
+    distinct?: StreamSubscriptionScalarFieldEnum | StreamSubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * StreamSubscription create
+   */
+  export type StreamSubscriptionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamSubscription
+     */
+    select?: StreamSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StreamSubscription
+     */
+    omit?: StreamSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamSubscriptionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a StreamSubscription.
+     */
+    data: XOR<StreamSubscriptionCreateInput, StreamSubscriptionUncheckedCreateInput>
+  }
+
+  /**
+   * StreamSubscription createMany
+   */
+  export type StreamSubscriptionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many StreamSubscriptions.
+     */
+    data: StreamSubscriptionCreateManyInput | StreamSubscriptionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StreamSubscription createManyAndReturn
+   */
+  export type StreamSubscriptionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamSubscription
+     */
+    select?: StreamSubscriptionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StreamSubscription
+     */
+    omit?: StreamSubscriptionOmit<ExtArgs> | null
+    /**
+     * The data used to create many StreamSubscriptions.
+     */
+    data: StreamSubscriptionCreateManyInput | StreamSubscriptionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamSubscriptionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StreamSubscription update
+   */
+  export type StreamSubscriptionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamSubscription
+     */
+    select?: StreamSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StreamSubscription
+     */
+    omit?: StreamSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamSubscriptionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a StreamSubscription.
+     */
+    data: XOR<StreamSubscriptionUpdateInput, StreamSubscriptionUncheckedUpdateInput>
+    /**
+     * Choose, which StreamSubscription to update.
+     */
+    where: StreamSubscriptionWhereUniqueInput
+  }
+
+  /**
+   * StreamSubscription updateMany
+   */
+  export type StreamSubscriptionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update StreamSubscriptions.
+     */
+    data: XOR<StreamSubscriptionUpdateManyMutationInput, StreamSubscriptionUncheckedUpdateManyInput>
+    /**
+     * Filter which StreamSubscriptions to update
+     */
+    where?: StreamSubscriptionWhereInput
+    /**
+     * Limit how many StreamSubscriptions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StreamSubscription updateManyAndReturn
+   */
+  export type StreamSubscriptionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamSubscription
+     */
+    select?: StreamSubscriptionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StreamSubscription
+     */
+    omit?: StreamSubscriptionOmit<ExtArgs> | null
+    /**
+     * The data used to update StreamSubscriptions.
+     */
+    data: XOR<StreamSubscriptionUpdateManyMutationInput, StreamSubscriptionUncheckedUpdateManyInput>
+    /**
+     * Filter which StreamSubscriptions to update
+     */
+    where?: StreamSubscriptionWhereInput
+    /**
+     * Limit how many StreamSubscriptions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamSubscriptionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StreamSubscription upsert
+   */
+  export type StreamSubscriptionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamSubscription
+     */
+    select?: StreamSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StreamSubscription
+     */
+    omit?: StreamSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamSubscriptionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the StreamSubscription to update in case it exists.
+     */
+    where: StreamSubscriptionWhereUniqueInput
+    /**
+     * In case the StreamSubscription found by the `where` argument doesn't exist, create a new StreamSubscription with this data.
+     */
+    create: XOR<StreamSubscriptionCreateInput, StreamSubscriptionUncheckedCreateInput>
+    /**
+     * In case the StreamSubscription was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StreamSubscriptionUpdateInput, StreamSubscriptionUncheckedUpdateInput>
+  }
+
+  /**
+   * StreamSubscription delete
+   */
+  export type StreamSubscriptionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamSubscription
+     */
+    select?: StreamSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StreamSubscription
+     */
+    omit?: StreamSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamSubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter which StreamSubscription to delete.
+     */
+    where: StreamSubscriptionWhereUniqueInput
+  }
+
+  /**
+   * StreamSubscription deleteMany
+   */
+  export type StreamSubscriptionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StreamSubscriptions to delete
+     */
+    where?: StreamSubscriptionWhereInput
+    /**
+     * Limit how many StreamSubscriptions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * StreamSubscription without action
+   */
+  export type StreamSubscriptionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamSubscription
+     */
+    select?: StreamSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StreamSubscription
+     */
+    omit?: StreamSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamSubscriptionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -5842,6 +8477,40 @@ export namespace Prisma {
   };
 
   export type ActivityLogScalarFieldEnum = (typeof ActivityLogScalarFieldEnum)[keyof typeof ActivityLogScalarFieldEnum]
+
+
+  export const StreamScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    price: 'price',
+    excerpt: 'excerpt',
+    description: 'description',
+    marketingTitle: 'marketingTitle',
+    bulletPoints: 'bulletPoints',
+    imageUrl: 'imageUrl',
+    tags: 'tags',
+    status: 'status',
+    availability: 'availability',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type StreamScalarFieldEnum = (typeof StreamScalarFieldEnum)[keyof typeof StreamScalarFieldEnum]
+
+
+  export const StreamSubscriptionScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    streamId: 'streamId',
+    price: 'price',
+    selectedDays: 'selectedDays',
+    startDate: 'startDate',
+    cancelledAt: 'cancelledAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type StreamSubscriptionScalarFieldEnum = (typeof StreamSubscriptionScalarFieldEnum)[keyof typeof StreamSubscriptionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5990,6 +8659,34 @@ export namespace Prisma {
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
+
+
+  /**
+   * Reference to a field of type 'StreamTag[]'
+   */
+  export type ListEnumStreamTagFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StreamTag[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'StreamTag'
+   */
+  export type EnumStreamTagFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StreamTag'>
+    
+
+
+  /**
+   * Reference to a field of type 'StreamStatus'
+   */
+  export type EnumStreamStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StreamStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'StreamStatus[]'
+   */
+  export type ListEnumStreamStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StreamStatus[]'>
+    
   /**
    * Deep Input Types
    */
@@ -6062,6 +8759,7 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     sessions?: SessionListRelationFilter
     activityLogs?: ActivityLogListRelationFilter
+    subscriptions?: StreamSubscriptionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -6081,6 +8779,7 @@ export namespace Prisma {
     deletedAt?: SortOrderInput | SortOrder
     sessions?: SessionOrderByRelationAggregateInput
     activityLogs?: ActivityLogOrderByRelationAggregateInput
+    subscriptions?: StreamSubscriptionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -6103,6 +8802,7 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     sessions?: SessionListRelationFilter
     activityLogs?: ActivityLogListRelationFilter
+    subscriptions?: StreamSubscriptionListRelationFilter
   }, "id">
 
   export type UserOrderByWithAggregationInput = {
@@ -6304,6 +9004,183 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"ActivityLog"> | Date | string
   }
 
+  export type StreamWhereInput = {
+    AND?: StreamWhereInput | StreamWhereInput[]
+    OR?: StreamWhereInput[]
+    NOT?: StreamWhereInput | StreamWhereInput[]
+    id?: StringFilter<"Stream"> | string
+    name?: StringFilter<"Stream"> | string
+    price?: FloatFilter<"Stream"> | number
+    excerpt?: StringFilter<"Stream"> | string
+    description?: StringNullableFilter<"Stream"> | string | null
+    marketingTitle?: StringNullableFilter<"Stream"> | string | null
+    bulletPoints?: StringNullableListFilter<"Stream">
+    imageUrl?: StringNullableFilter<"Stream"> | string | null
+    tags?: EnumStreamTagNullableListFilter<"Stream">
+    status?: EnumStreamStatusFilter<"Stream"> | $Enums.StreamStatus
+    availability?: IntNullableListFilter<"Stream">
+    createdAt?: DateTimeFilter<"Stream"> | Date | string
+    updatedAt?: DateTimeFilter<"Stream"> | Date | string
+    subscriptions?: StreamSubscriptionListRelationFilter
+  }
+
+  export type StreamOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    price?: SortOrder
+    excerpt?: SortOrder
+    description?: SortOrderInput | SortOrder
+    marketingTitle?: SortOrderInput | SortOrder
+    bulletPoints?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    status?: SortOrder
+    availability?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    subscriptions?: StreamSubscriptionOrderByRelationAggregateInput
+  }
+
+  export type StreamWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: StreamWhereInput | StreamWhereInput[]
+    OR?: StreamWhereInput[]
+    NOT?: StreamWhereInput | StreamWhereInput[]
+    name?: StringFilter<"Stream"> | string
+    price?: FloatFilter<"Stream"> | number
+    excerpt?: StringFilter<"Stream"> | string
+    description?: StringNullableFilter<"Stream"> | string | null
+    marketingTitle?: StringNullableFilter<"Stream"> | string | null
+    bulletPoints?: StringNullableListFilter<"Stream">
+    imageUrl?: StringNullableFilter<"Stream"> | string | null
+    tags?: EnumStreamTagNullableListFilter<"Stream">
+    status?: EnumStreamStatusFilter<"Stream"> | $Enums.StreamStatus
+    availability?: IntNullableListFilter<"Stream">
+    createdAt?: DateTimeFilter<"Stream"> | Date | string
+    updatedAt?: DateTimeFilter<"Stream"> | Date | string
+    subscriptions?: StreamSubscriptionListRelationFilter
+  }, "id">
+
+  export type StreamOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    price?: SortOrder
+    excerpt?: SortOrder
+    description?: SortOrderInput | SortOrder
+    marketingTitle?: SortOrderInput | SortOrder
+    bulletPoints?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    status?: SortOrder
+    availability?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: StreamCountOrderByAggregateInput
+    _avg?: StreamAvgOrderByAggregateInput
+    _max?: StreamMaxOrderByAggregateInput
+    _min?: StreamMinOrderByAggregateInput
+    _sum?: StreamSumOrderByAggregateInput
+  }
+
+  export type StreamScalarWhereWithAggregatesInput = {
+    AND?: StreamScalarWhereWithAggregatesInput | StreamScalarWhereWithAggregatesInput[]
+    OR?: StreamScalarWhereWithAggregatesInput[]
+    NOT?: StreamScalarWhereWithAggregatesInput | StreamScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Stream"> | string
+    name?: StringWithAggregatesFilter<"Stream"> | string
+    price?: FloatWithAggregatesFilter<"Stream"> | number
+    excerpt?: StringWithAggregatesFilter<"Stream"> | string
+    description?: StringNullableWithAggregatesFilter<"Stream"> | string | null
+    marketingTitle?: StringNullableWithAggregatesFilter<"Stream"> | string | null
+    bulletPoints?: StringNullableListFilter<"Stream">
+    imageUrl?: StringNullableWithAggregatesFilter<"Stream"> | string | null
+    tags?: EnumStreamTagNullableListFilter<"Stream">
+    status?: EnumStreamStatusWithAggregatesFilter<"Stream"> | $Enums.StreamStatus
+    availability?: IntNullableListFilter<"Stream">
+    createdAt?: DateTimeWithAggregatesFilter<"Stream"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Stream"> | Date | string
+  }
+
+  export type StreamSubscriptionWhereInput = {
+    AND?: StreamSubscriptionWhereInput | StreamSubscriptionWhereInput[]
+    OR?: StreamSubscriptionWhereInput[]
+    NOT?: StreamSubscriptionWhereInput | StreamSubscriptionWhereInput[]
+    id?: StringFilter<"StreamSubscription"> | string
+    userId?: StringFilter<"StreamSubscription"> | string
+    streamId?: StringFilter<"StreamSubscription"> | string
+    price?: FloatFilter<"StreamSubscription"> | number
+    selectedDays?: IntNullableListFilter<"StreamSubscription">
+    startDate?: DateTimeFilter<"StreamSubscription"> | Date | string
+    cancelledAt?: DateTimeNullableFilter<"StreamSubscription"> | Date | string | null
+    createdAt?: DateTimeFilter<"StreamSubscription"> | Date | string
+    updatedAt?: DateTimeFilter<"StreamSubscription"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    stream?: XOR<StreamScalarRelationFilter, StreamWhereInput>
+  }
+
+  export type StreamSubscriptionOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    streamId?: SortOrder
+    price?: SortOrder
+    selectedDays?: SortOrder
+    startDate?: SortOrder
+    cancelledAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    stream?: StreamOrderByWithRelationInput
+  }
+
+  export type StreamSubscriptionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: StreamSubscriptionWhereInput | StreamSubscriptionWhereInput[]
+    OR?: StreamSubscriptionWhereInput[]
+    NOT?: StreamSubscriptionWhereInput | StreamSubscriptionWhereInput[]
+    userId?: StringFilter<"StreamSubscription"> | string
+    streamId?: StringFilter<"StreamSubscription"> | string
+    price?: FloatFilter<"StreamSubscription"> | number
+    selectedDays?: IntNullableListFilter<"StreamSubscription">
+    startDate?: DateTimeFilter<"StreamSubscription"> | Date | string
+    cancelledAt?: DateTimeNullableFilter<"StreamSubscription"> | Date | string | null
+    createdAt?: DateTimeFilter<"StreamSubscription"> | Date | string
+    updatedAt?: DateTimeFilter<"StreamSubscription"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    stream?: XOR<StreamScalarRelationFilter, StreamWhereInput>
+  }, "id">
+
+  export type StreamSubscriptionOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    streamId?: SortOrder
+    price?: SortOrder
+    selectedDays?: SortOrder
+    startDate?: SortOrder
+    cancelledAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: StreamSubscriptionCountOrderByAggregateInput
+    _avg?: StreamSubscriptionAvgOrderByAggregateInput
+    _max?: StreamSubscriptionMaxOrderByAggregateInput
+    _min?: StreamSubscriptionMinOrderByAggregateInput
+    _sum?: StreamSubscriptionSumOrderByAggregateInput
+  }
+
+  export type StreamSubscriptionScalarWhereWithAggregatesInput = {
+    AND?: StreamSubscriptionScalarWhereWithAggregatesInput | StreamSubscriptionScalarWhereWithAggregatesInput[]
+    OR?: StreamSubscriptionScalarWhereWithAggregatesInput[]
+    NOT?: StreamSubscriptionScalarWhereWithAggregatesInput | StreamSubscriptionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"StreamSubscription"> | string
+    userId?: StringWithAggregatesFilter<"StreamSubscription"> | string
+    streamId?: StringWithAggregatesFilter<"StreamSubscription"> | string
+    price?: FloatWithAggregatesFilter<"StreamSubscription"> | number
+    selectedDays?: IntNullableListFilter<"StreamSubscription">
+    startDate?: DateTimeWithAggregatesFilter<"StreamSubscription"> | Date | string
+    cancelledAt?: DateTimeNullableWithAggregatesFilter<"StreamSubscription"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"StreamSubscription"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"StreamSubscription"> | Date | string
+  }
+
   export type TestCreateInput = {
     id?: string
     text: string
@@ -6370,6 +9247,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     sessions?: SessionCreateNestedManyWithoutUserInput
     activityLogs?: ActivityLogCreateNestedManyWithoutUserInput
+    subscriptions?: StreamSubscriptionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -6389,6 +9267,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     activityLogs?: ActivityLogUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: StreamSubscriptionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -6408,6 +9287,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     sessions?: SessionUpdateManyWithoutUserNestedInput
     activityLogs?: ActivityLogUpdateManyWithoutUserNestedInput
+    subscriptions?: StreamSubscriptionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -6427,6 +9307,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     activityLogs?: ActivityLogUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: StreamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -6651,6 +9532,204 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type StreamCreateInput = {
+    id?: string
+    name: string
+    price: number
+    excerpt: string
+    description?: string | null
+    marketingTitle?: string | null
+    bulletPoints?: StreamCreatebulletPointsInput | string[]
+    imageUrl?: string | null
+    tags?: StreamCreatetagsInput | $Enums.StreamTag[]
+    status?: $Enums.StreamStatus
+    availability?: StreamCreateavailabilityInput | number[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subscriptions?: StreamSubscriptionCreateNestedManyWithoutStreamInput
+  }
+
+  export type StreamUncheckedCreateInput = {
+    id?: string
+    name: string
+    price: number
+    excerpt: string
+    description?: string | null
+    marketingTitle?: string | null
+    bulletPoints?: StreamCreatebulletPointsInput | string[]
+    imageUrl?: string | null
+    tags?: StreamCreatetagsInput | $Enums.StreamTag[]
+    status?: $Enums.StreamStatus
+    availability?: StreamCreateavailabilityInput | number[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subscriptions?: StreamSubscriptionUncheckedCreateNestedManyWithoutStreamInput
+  }
+
+  export type StreamUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    excerpt?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    marketingTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    bulletPoints?: StreamUpdatebulletPointsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StreamUpdatetagsInput | $Enums.StreamTag[]
+    status?: EnumStreamStatusFieldUpdateOperationsInput | $Enums.StreamStatus
+    availability?: StreamUpdateavailabilityInput | number[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subscriptions?: StreamSubscriptionUpdateManyWithoutStreamNestedInput
+  }
+
+  export type StreamUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    excerpt?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    marketingTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    bulletPoints?: StreamUpdatebulletPointsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StreamUpdatetagsInput | $Enums.StreamTag[]
+    status?: EnumStreamStatusFieldUpdateOperationsInput | $Enums.StreamStatus
+    availability?: StreamUpdateavailabilityInput | number[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subscriptions?: StreamSubscriptionUncheckedUpdateManyWithoutStreamNestedInput
+  }
+
+  export type StreamCreateManyInput = {
+    id?: string
+    name: string
+    price: number
+    excerpt: string
+    description?: string | null
+    marketingTitle?: string | null
+    bulletPoints?: StreamCreatebulletPointsInput | string[]
+    imageUrl?: string | null
+    tags?: StreamCreatetagsInput | $Enums.StreamTag[]
+    status?: $Enums.StreamStatus
+    availability?: StreamCreateavailabilityInput | number[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StreamUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    excerpt?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    marketingTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    bulletPoints?: StreamUpdatebulletPointsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StreamUpdatetagsInput | $Enums.StreamTag[]
+    status?: EnumStreamStatusFieldUpdateOperationsInput | $Enums.StreamStatus
+    availability?: StreamUpdateavailabilityInput | number[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StreamUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    excerpt?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    marketingTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    bulletPoints?: StreamUpdatebulletPointsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StreamUpdatetagsInput | $Enums.StreamTag[]
+    status?: EnumStreamStatusFieldUpdateOperationsInput | $Enums.StreamStatus
+    availability?: StreamUpdateavailabilityInput | number[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StreamSubscriptionCreateInput = {
+    id?: string
+    price: number
+    selectedDays?: StreamSubscriptionCreateselectedDaysInput | number[]
+    startDate: Date | string
+    cancelledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSubscriptionsInput
+    stream: StreamCreateNestedOneWithoutSubscriptionsInput
+  }
+
+  export type StreamSubscriptionUncheckedCreateInput = {
+    id?: string
+    userId: string
+    streamId: string
+    price: number
+    selectedDays?: StreamSubscriptionCreateselectedDaysInput | number[]
+    startDate: Date | string
+    cancelledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StreamSubscriptionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    selectedDays?: StreamSubscriptionUpdateselectedDaysInput | number[]
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSubscriptionsNestedInput
+    stream?: StreamUpdateOneRequiredWithoutSubscriptionsNestedInput
+  }
+
+  export type StreamSubscriptionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    streamId?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    selectedDays?: StreamSubscriptionUpdateselectedDaysInput | number[]
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StreamSubscriptionCreateManyInput = {
+    id?: string
+    userId: string
+    streamId: string
+    price: number
+    selectedDays?: StreamSubscriptionCreateselectedDaysInput | number[]
+    startDate: Date | string
+    cancelledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StreamSubscriptionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    selectedDays?: StreamSubscriptionUpdateselectedDaysInput | number[]
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StreamSubscriptionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    streamId?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    selectedDays?: StreamSubscriptionUpdateselectedDaysInput | number[]
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -6793,6 +9872,12 @@ export namespace Prisma {
     none?: ActivityLogWhereInput
   }
 
+  export type StreamSubscriptionListRelationFilter = {
+    every?: StreamSubscriptionWhereInput
+    some?: StreamSubscriptionWhereInput
+    none?: StreamSubscriptionWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -6803,6 +9888,10 @@ export namespace Prisma {
   }
 
   export type ActivityLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StreamSubscriptionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -7073,6 +10162,175 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type EnumStreamTagNullableListFilter<$PrismaModel = never> = {
+    equals?: $Enums.StreamTag[] | ListEnumStreamTagFieldRefInput<$PrismaModel> | null
+    has?: $Enums.StreamTag | EnumStreamTagFieldRefInput<$PrismaModel> | null
+    hasEvery?: $Enums.StreamTag[] | ListEnumStreamTagFieldRefInput<$PrismaModel>
+    hasSome?: $Enums.StreamTag[] | ListEnumStreamTagFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type EnumStreamStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.StreamStatus | EnumStreamStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.StreamStatus[] | ListEnumStreamStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StreamStatus[] | ListEnumStreamStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStreamStatusFilter<$PrismaModel> | $Enums.StreamStatus
+  }
+
+  export type IntNullableListFilter<$PrismaModel = never> = {
+    equals?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    has?: number | IntFieldRefInput<$PrismaModel> | null
+    hasEvery?: number[] | ListIntFieldRefInput<$PrismaModel>
+    hasSome?: number[] | ListIntFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type StreamCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    price?: SortOrder
+    excerpt?: SortOrder
+    description?: SortOrder
+    marketingTitle?: SortOrder
+    bulletPoints?: SortOrder
+    imageUrl?: SortOrder
+    tags?: SortOrder
+    status?: SortOrder
+    availability?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StreamAvgOrderByAggregateInput = {
+    price?: SortOrder
+    availability?: SortOrder
+  }
+
+  export type StreamMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    price?: SortOrder
+    excerpt?: SortOrder
+    description?: SortOrder
+    marketingTitle?: SortOrder
+    imageUrl?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StreamMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    price?: SortOrder
+    excerpt?: SortOrder
+    description?: SortOrder
+    marketingTitle?: SortOrder
+    imageUrl?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StreamSumOrderByAggregateInput = {
+    price?: SortOrder
+    availability?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type EnumStreamStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.StreamStatus | EnumStreamStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.StreamStatus[] | ListEnumStreamStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StreamStatus[] | ListEnumStreamStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStreamStatusWithAggregatesFilter<$PrismaModel> | $Enums.StreamStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStreamStatusFilter<$PrismaModel>
+    _max?: NestedEnumStreamStatusFilter<$PrismaModel>
+  }
+
+  export type StreamScalarRelationFilter = {
+    is?: StreamWhereInput
+    isNot?: StreamWhereInput
+  }
+
+  export type StreamSubscriptionCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    streamId?: SortOrder
+    price?: SortOrder
+    selectedDays?: SortOrder
+    startDate?: SortOrder
+    cancelledAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StreamSubscriptionAvgOrderByAggregateInput = {
+    price?: SortOrder
+    selectedDays?: SortOrder
+  }
+
+  export type StreamSubscriptionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    streamId?: SortOrder
+    price?: SortOrder
+    startDate?: SortOrder
+    cancelledAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StreamSubscriptionMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    streamId?: SortOrder
+    price?: SortOrder
+    startDate?: SortOrder
+    cancelledAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StreamSubscriptionSumOrderByAggregateInput = {
+    price?: SortOrder
+    selectedDays?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -7095,6 +10353,13 @@ export namespace Prisma {
     connect?: ActivityLogWhereUniqueInput | ActivityLogWhereUniqueInput[]
   }
 
+  export type StreamSubscriptionCreateNestedManyWithoutUserInput = {
+    create?: XOR<StreamSubscriptionCreateWithoutUserInput, StreamSubscriptionUncheckedCreateWithoutUserInput> | StreamSubscriptionCreateWithoutUserInput[] | StreamSubscriptionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StreamSubscriptionCreateOrConnectWithoutUserInput | StreamSubscriptionCreateOrConnectWithoutUserInput[]
+    createMany?: StreamSubscriptionCreateManyUserInputEnvelope
+    connect?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+  }
+
   export type SessionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -7107,6 +10372,13 @@ export namespace Prisma {
     connectOrCreate?: ActivityLogCreateOrConnectWithoutUserInput | ActivityLogCreateOrConnectWithoutUserInput[]
     createMany?: ActivityLogCreateManyUserInputEnvelope
     connect?: ActivityLogWhereUniqueInput | ActivityLogWhereUniqueInput[]
+  }
+
+  export type StreamSubscriptionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<StreamSubscriptionCreateWithoutUserInput, StreamSubscriptionUncheckedCreateWithoutUserInput> | StreamSubscriptionCreateWithoutUserInput[] | StreamSubscriptionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StreamSubscriptionCreateOrConnectWithoutUserInput | StreamSubscriptionCreateOrConnectWithoutUserInput[]
+    createMany?: StreamSubscriptionCreateManyUserInputEnvelope
+    connect?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -7161,6 +10433,20 @@ export namespace Prisma {
     deleteMany?: ActivityLogScalarWhereInput | ActivityLogScalarWhereInput[]
   }
 
+  export type StreamSubscriptionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<StreamSubscriptionCreateWithoutUserInput, StreamSubscriptionUncheckedCreateWithoutUserInput> | StreamSubscriptionCreateWithoutUserInput[] | StreamSubscriptionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StreamSubscriptionCreateOrConnectWithoutUserInput | StreamSubscriptionCreateOrConnectWithoutUserInput[]
+    upsert?: StreamSubscriptionUpsertWithWhereUniqueWithoutUserInput | StreamSubscriptionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: StreamSubscriptionCreateManyUserInputEnvelope
+    set?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    disconnect?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    delete?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    connect?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    update?: StreamSubscriptionUpdateWithWhereUniqueWithoutUserInput | StreamSubscriptionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: StreamSubscriptionUpdateManyWithWhereWithoutUserInput | StreamSubscriptionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: StreamSubscriptionScalarWhereInput | StreamSubscriptionScalarWhereInput[]
+  }
+
   export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -7187,6 +10473,20 @@ export namespace Prisma {
     update?: ActivityLogUpdateWithWhereUniqueWithoutUserInput | ActivityLogUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: ActivityLogUpdateManyWithWhereWithoutUserInput | ActivityLogUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: ActivityLogScalarWhereInput | ActivityLogScalarWhereInput[]
+  }
+
+  export type StreamSubscriptionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<StreamSubscriptionCreateWithoutUserInput, StreamSubscriptionUncheckedCreateWithoutUserInput> | StreamSubscriptionCreateWithoutUserInput[] | StreamSubscriptionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StreamSubscriptionCreateOrConnectWithoutUserInput | StreamSubscriptionCreateOrConnectWithoutUserInput[]
+    upsert?: StreamSubscriptionUpsertWithWhereUniqueWithoutUserInput | StreamSubscriptionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: StreamSubscriptionCreateManyUserInputEnvelope
+    set?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    disconnect?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    delete?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    connect?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    update?: StreamSubscriptionUpdateWithWhereUniqueWithoutUserInput | StreamSubscriptionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: StreamSubscriptionUpdateManyWithWhereWithoutUserInput | StreamSubscriptionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: StreamSubscriptionScalarWhereInput | StreamSubscriptionScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutSessionsInput = {
@@ -7229,6 +10529,124 @@ export namespace Prisma {
     delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutActivityLogsInput, UserUpdateWithoutActivityLogsInput>, UserUncheckedUpdateWithoutActivityLogsInput>
+  }
+
+  export type StreamCreatebulletPointsInput = {
+    set: string[]
+  }
+
+  export type StreamCreatetagsInput = {
+    set: $Enums.StreamTag[]
+  }
+
+  export type StreamCreateavailabilityInput = {
+    set: number[]
+  }
+
+  export type StreamSubscriptionCreateNestedManyWithoutStreamInput = {
+    create?: XOR<StreamSubscriptionCreateWithoutStreamInput, StreamSubscriptionUncheckedCreateWithoutStreamInput> | StreamSubscriptionCreateWithoutStreamInput[] | StreamSubscriptionUncheckedCreateWithoutStreamInput[]
+    connectOrCreate?: StreamSubscriptionCreateOrConnectWithoutStreamInput | StreamSubscriptionCreateOrConnectWithoutStreamInput[]
+    createMany?: StreamSubscriptionCreateManyStreamInputEnvelope
+    connect?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+  }
+
+  export type StreamSubscriptionUncheckedCreateNestedManyWithoutStreamInput = {
+    create?: XOR<StreamSubscriptionCreateWithoutStreamInput, StreamSubscriptionUncheckedCreateWithoutStreamInput> | StreamSubscriptionCreateWithoutStreamInput[] | StreamSubscriptionUncheckedCreateWithoutStreamInput[]
+    connectOrCreate?: StreamSubscriptionCreateOrConnectWithoutStreamInput | StreamSubscriptionCreateOrConnectWithoutStreamInput[]
+    createMany?: StreamSubscriptionCreateManyStreamInputEnvelope
+    connect?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type StreamUpdatebulletPointsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type StreamUpdatetagsInput = {
+    set?: $Enums.StreamTag[]
+    push?: $Enums.StreamTag | $Enums.StreamTag[]
+  }
+
+  export type EnumStreamStatusFieldUpdateOperationsInput = {
+    set?: $Enums.StreamStatus
+  }
+
+  export type StreamUpdateavailabilityInput = {
+    set?: number[]
+    push?: number | number[]
+  }
+
+  export type StreamSubscriptionUpdateManyWithoutStreamNestedInput = {
+    create?: XOR<StreamSubscriptionCreateWithoutStreamInput, StreamSubscriptionUncheckedCreateWithoutStreamInput> | StreamSubscriptionCreateWithoutStreamInput[] | StreamSubscriptionUncheckedCreateWithoutStreamInput[]
+    connectOrCreate?: StreamSubscriptionCreateOrConnectWithoutStreamInput | StreamSubscriptionCreateOrConnectWithoutStreamInput[]
+    upsert?: StreamSubscriptionUpsertWithWhereUniqueWithoutStreamInput | StreamSubscriptionUpsertWithWhereUniqueWithoutStreamInput[]
+    createMany?: StreamSubscriptionCreateManyStreamInputEnvelope
+    set?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    disconnect?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    delete?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    connect?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    update?: StreamSubscriptionUpdateWithWhereUniqueWithoutStreamInput | StreamSubscriptionUpdateWithWhereUniqueWithoutStreamInput[]
+    updateMany?: StreamSubscriptionUpdateManyWithWhereWithoutStreamInput | StreamSubscriptionUpdateManyWithWhereWithoutStreamInput[]
+    deleteMany?: StreamSubscriptionScalarWhereInput | StreamSubscriptionScalarWhereInput[]
+  }
+
+  export type StreamSubscriptionUncheckedUpdateManyWithoutStreamNestedInput = {
+    create?: XOR<StreamSubscriptionCreateWithoutStreamInput, StreamSubscriptionUncheckedCreateWithoutStreamInput> | StreamSubscriptionCreateWithoutStreamInput[] | StreamSubscriptionUncheckedCreateWithoutStreamInput[]
+    connectOrCreate?: StreamSubscriptionCreateOrConnectWithoutStreamInput | StreamSubscriptionCreateOrConnectWithoutStreamInput[]
+    upsert?: StreamSubscriptionUpsertWithWhereUniqueWithoutStreamInput | StreamSubscriptionUpsertWithWhereUniqueWithoutStreamInput[]
+    createMany?: StreamSubscriptionCreateManyStreamInputEnvelope
+    set?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    disconnect?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    delete?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    connect?: StreamSubscriptionWhereUniqueInput | StreamSubscriptionWhereUniqueInput[]
+    update?: StreamSubscriptionUpdateWithWhereUniqueWithoutStreamInput | StreamSubscriptionUpdateWithWhereUniqueWithoutStreamInput[]
+    updateMany?: StreamSubscriptionUpdateManyWithWhereWithoutStreamInput | StreamSubscriptionUpdateManyWithWhereWithoutStreamInput[]
+    deleteMany?: StreamSubscriptionScalarWhereInput | StreamSubscriptionScalarWhereInput[]
+  }
+
+  export type StreamSubscriptionCreateselectedDaysInput = {
+    set: number[]
+  }
+
+  export type UserCreateNestedOneWithoutSubscriptionsInput = {
+    create?: XOR<UserCreateWithoutSubscriptionsInput, UserUncheckedCreateWithoutSubscriptionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSubscriptionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type StreamCreateNestedOneWithoutSubscriptionsInput = {
+    create?: XOR<StreamCreateWithoutSubscriptionsInput, StreamUncheckedCreateWithoutSubscriptionsInput>
+    connectOrCreate?: StreamCreateOrConnectWithoutSubscriptionsInput
+    connect?: StreamWhereUniqueInput
+  }
+
+  export type StreamSubscriptionUpdateselectedDaysInput = {
+    set?: number[]
+    push?: number | number[]
+  }
+
+  export type UserUpdateOneRequiredWithoutSubscriptionsNestedInput = {
+    create?: XOR<UserCreateWithoutSubscriptionsInput, UserUncheckedCreateWithoutSubscriptionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSubscriptionsInput
+    upsert?: UserUpsertWithoutSubscriptionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSubscriptionsInput, UserUpdateWithoutSubscriptionsInput>, UserUncheckedUpdateWithoutSubscriptionsInput>
+  }
+
+  export type StreamUpdateOneRequiredWithoutSubscriptionsNestedInput = {
+    create?: XOR<StreamCreateWithoutSubscriptionsInput, StreamUncheckedCreateWithoutSubscriptionsInput>
+    connectOrCreate?: StreamCreateOrConnectWithoutSubscriptionsInput
+    upsert?: StreamUpsertWithoutSubscriptionsInput
+    connect?: StreamWhereUniqueInput
+    update?: XOR<XOR<StreamUpdateToOneWithWhereWithoutSubscriptionsInput, StreamUpdateWithoutSubscriptionsInput>, StreamUncheckedUpdateWithoutSubscriptionsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -7473,6 +10891,39 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedEnumStreamStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.StreamStatus | EnumStreamStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.StreamStatus[] | ListEnumStreamStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StreamStatus[] | ListEnumStreamStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStreamStatusFilter<$PrismaModel> | $Enums.StreamStatus
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedEnumStreamStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.StreamStatus | EnumStreamStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.StreamStatus[] | ListEnumStreamStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StreamStatus[] | ListEnumStreamStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStreamStatusWithAggregatesFilter<$PrismaModel> | $Enums.StreamStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStreamStatusFilter<$PrismaModel>
+    _max?: NestedEnumStreamStatusFilter<$PrismaModel>
+  }
+
   export type SessionCreateWithoutUserInput = {
     id?: string
     token: string
@@ -7539,6 +10990,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type StreamSubscriptionCreateWithoutUserInput = {
+    id?: string
+    price: number
+    selectedDays?: StreamSubscriptionCreateselectedDaysInput | number[]
+    startDate: Date | string
+    cancelledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    stream: StreamCreateNestedOneWithoutSubscriptionsInput
+  }
+
+  export type StreamSubscriptionUncheckedCreateWithoutUserInput = {
+    id?: string
+    streamId: string
+    price: number
+    selectedDays?: StreamSubscriptionCreateselectedDaysInput | number[]
+    startDate: Date | string
+    cancelledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StreamSubscriptionCreateOrConnectWithoutUserInput = {
+    where: StreamSubscriptionWhereUniqueInput
+    create: XOR<StreamSubscriptionCreateWithoutUserInput, StreamSubscriptionUncheckedCreateWithoutUserInput>
+  }
+
+  export type StreamSubscriptionCreateManyUserInputEnvelope = {
+    data: StreamSubscriptionCreateManyUserInput | StreamSubscriptionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SessionUpsertWithWhereUniqueWithoutUserInput = {
     where: SessionWhereUniqueInput
     update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
@@ -7602,6 +11085,37 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"ActivityLog"> | Date | string
   }
 
+  export type StreamSubscriptionUpsertWithWhereUniqueWithoutUserInput = {
+    where: StreamSubscriptionWhereUniqueInput
+    update: XOR<StreamSubscriptionUpdateWithoutUserInput, StreamSubscriptionUncheckedUpdateWithoutUserInput>
+    create: XOR<StreamSubscriptionCreateWithoutUserInput, StreamSubscriptionUncheckedCreateWithoutUserInput>
+  }
+
+  export type StreamSubscriptionUpdateWithWhereUniqueWithoutUserInput = {
+    where: StreamSubscriptionWhereUniqueInput
+    data: XOR<StreamSubscriptionUpdateWithoutUserInput, StreamSubscriptionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type StreamSubscriptionUpdateManyWithWhereWithoutUserInput = {
+    where: StreamSubscriptionScalarWhereInput
+    data: XOR<StreamSubscriptionUpdateManyMutationInput, StreamSubscriptionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type StreamSubscriptionScalarWhereInput = {
+    AND?: StreamSubscriptionScalarWhereInput | StreamSubscriptionScalarWhereInput[]
+    OR?: StreamSubscriptionScalarWhereInput[]
+    NOT?: StreamSubscriptionScalarWhereInput | StreamSubscriptionScalarWhereInput[]
+    id?: StringFilter<"StreamSubscription"> | string
+    userId?: StringFilter<"StreamSubscription"> | string
+    streamId?: StringFilter<"StreamSubscription"> | string
+    price?: FloatFilter<"StreamSubscription"> | number
+    selectedDays?: IntNullableListFilter<"StreamSubscription">
+    startDate?: DateTimeFilter<"StreamSubscription"> | Date | string
+    cancelledAt?: DateTimeNullableFilter<"StreamSubscription"> | Date | string | null
+    createdAt?: DateTimeFilter<"StreamSubscription"> | Date | string
+    updatedAt?: DateTimeFilter<"StreamSubscription"> | Date | string
+  }
+
   export type UserCreateWithoutSessionsInput = {
     id?: string
     firstName: string
@@ -7618,6 +11132,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     deletedAt?: Date | string | null
     activityLogs?: ActivityLogCreateNestedManyWithoutUserInput
+    subscriptions?: StreamSubscriptionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -7636,6 +11151,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     deletedAt?: Date | string | null
     activityLogs?: ActivityLogUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: StreamSubscriptionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -7670,6 +11186,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     activityLogs?: ActivityLogUpdateManyWithoutUserNestedInput
+    subscriptions?: StreamSubscriptionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -7688,6 +11205,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     activityLogs?: ActivityLogUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: StreamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutActivityLogsInput = {
@@ -7706,6 +11224,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     deletedAt?: Date | string | null
     sessions?: SessionCreateNestedManyWithoutUserInput
+    subscriptions?: StreamSubscriptionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutActivityLogsInput = {
@@ -7724,6 +11243,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     deletedAt?: Date | string | null
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: StreamSubscriptionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutActivityLogsInput = {
@@ -7758,6 +11278,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    subscriptions?: StreamSubscriptionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutActivityLogsInput = {
@@ -7776,6 +11297,227 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: StreamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type StreamSubscriptionCreateWithoutStreamInput = {
+    id?: string
+    price: number
+    selectedDays?: StreamSubscriptionCreateselectedDaysInput | number[]
+    startDate: Date | string
+    cancelledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSubscriptionsInput
+  }
+
+  export type StreamSubscriptionUncheckedCreateWithoutStreamInput = {
+    id?: string
+    userId: string
+    price: number
+    selectedDays?: StreamSubscriptionCreateselectedDaysInput | number[]
+    startDate: Date | string
+    cancelledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StreamSubscriptionCreateOrConnectWithoutStreamInput = {
+    where: StreamSubscriptionWhereUniqueInput
+    create: XOR<StreamSubscriptionCreateWithoutStreamInput, StreamSubscriptionUncheckedCreateWithoutStreamInput>
+  }
+
+  export type StreamSubscriptionCreateManyStreamInputEnvelope = {
+    data: StreamSubscriptionCreateManyStreamInput | StreamSubscriptionCreateManyStreamInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type StreamSubscriptionUpsertWithWhereUniqueWithoutStreamInput = {
+    where: StreamSubscriptionWhereUniqueInput
+    update: XOR<StreamSubscriptionUpdateWithoutStreamInput, StreamSubscriptionUncheckedUpdateWithoutStreamInput>
+    create: XOR<StreamSubscriptionCreateWithoutStreamInput, StreamSubscriptionUncheckedCreateWithoutStreamInput>
+  }
+
+  export type StreamSubscriptionUpdateWithWhereUniqueWithoutStreamInput = {
+    where: StreamSubscriptionWhereUniqueInput
+    data: XOR<StreamSubscriptionUpdateWithoutStreamInput, StreamSubscriptionUncheckedUpdateWithoutStreamInput>
+  }
+
+  export type StreamSubscriptionUpdateManyWithWhereWithoutStreamInput = {
+    where: StreamSubscriptionScalarWhereInput
+    data: XOR<StreamSubscriptionUpdateManyMutationInput, StreamSubscriptionUncheckedUpdateManyWithoutStreamInput>
+  }
+
+  export type UserCreateWithoutSubscriptionsInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    password?: string | null
+    status?: $Enums.UserStatus
+    role?: $Enums.UserRole
+    failedLoginAttempts?: number
+    lastLoginAttempt?: Date | string | null
+    resetPasswordToken?: string | null
+    resetPasswordTokenExpiry?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    activityLogs?: ActivityLogCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSubscriptionsInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    password?: string | null
+    status?: $Enums.UserStatus
+    role?: $Enums.UserRole
+    failedLoginAttempts?: number
+    lastLoginAttempt?: Date | string | null
+    resetPasswordToken?: string | null
+    resetPasswordTokenExpiry?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    activityLogs?: ActivityLogUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSubscriptionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSubscriptionsInput, UserUncheckedCreateWithoutSubscriptionsInput>
+  }
+
+  export type StreamCreateWithoutSubscriptionsInput = {
+    id?: string
+    name: string
+    price: number
+    excerpt: string
+    description?: string | null
+    marketingTitle?: string | null
+    bulletPoints?: StreamCreatebulletPointsInput | string[]
+    imageUrl?: string | null
+    tags?: StreamCreatetagsInput | $Enums.StreamTag[]
+    status?: $Enums.StreamStatus
+    availability?: StreamCreateavailabilityInput | number[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StreamUncheckedCreateWithoutSubscriptionsInput = {
+    id?: string
+    name: string
+    price: number
+    excerpt: string
+    description?: string | null
+    marketingTitle?: string | null
+    bulletPoints?: StreamCreatebulletPointsInput | string[]
+    imageUrl?: string | null
+    tags?: StreamCreatetagsInput | $Enums.StreamTag[]
+    status?: $Enums.StreamStatus
+    availability?: StreamCreateavailabilityInput | number[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StreamCreateOrConnectWithoutSubscriptionsInput = {
+    where: StreamWhereUniqueInput
+    create: XOR<StreamCreateWithoutSubscriptionsInput, StreamUncheckedCreateWithoutSubscriptionsInput>
+  }
+
+  export type UserUpsertWithoutSubscriptionsInput = {
+    update: XOR<UserUpdateWithoutSubscriptionsInput, UserUncheckedUpdateWithoutSubscriptionsInput>
+    create: XOR<UserCreateWithoutSubscriptionsInput, UserUncheckedCreateWithoutSubscriptionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSubscriptionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSubscriptionsInput, UserUncheckedUpdateWithoutSubscriptionsInput>
+  }
+
+  export type UserUpdateWithoutSubscriptionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lastLoginAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordTokenExpiry?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    activityLogs?: ActivityLogUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSubscriptionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lastLoginAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordTokenExpiry?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    activityLogs?: ActivityLogUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type StreamUpsertWithoutSubscriptionsInput = {
+    update: XOR<StreamUpdateWithoutSubscriptionsInput, StreamUncheckedUpdateWithoutSubscriptionsInput>
+    create: XOR<StreamCreateWithoutSubscriptionsInput, StreamUncheckedCreateWithoutSubscriptionsInput>
+    where?: StreamWhereInput
+  }
+
+  export type StreamUpdateToOneWithWhereWithoutSubscriptionsInput = {
+    where?: StreamWhereInput
+    data: XOR<StreamUpdateWithoutSubscriptionsInput, StreamUncheckedUpdateWithoutSubscriptionsInput>
+  }
+
+  export type StreamUpdateWithoutSubscriptionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    excerpt?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    marketingTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    bulletPoints?: StreamUpdatebulletPointsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StreamUpdatetagsInput | $Enums.StreamTag[]
+    status?: EnumStreamStatusFieldUpdateOperationsInput | $Enums.StreamStatus
+    availability?: StreamUpdateavailabilityInput | number[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StreamUncheckedUpdateWithoutSubscriptionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    excerpt?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    marketingTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    bulletPoints?: StreamUpdatebulletPointsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StreamUpdatetagsInput | $Enums.StreamTag[]
+    status?: EnumStreamStatusFieldUpdateOperationsInput | $Enums.StreamStatus
+    availability?: StreamUpdateavailabilityInput | number[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionCreateManyUserInput = {
@@ -7797,6 +11539,17 @@ export namespace Prisma {
     entityId: string
     description?: string | null
     systemLog?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StreamSubscriptionCreateManyUserInput = {
+    id?: string
+    streamId: string
+    price: number
+    selectedDays?: StreamSubscriptionCreateselectedDaysInput | number[]
+    startDate: Date | string
+    cancelledAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7865,6 +11618,83 @@ export namespace Prisma {
     entityId?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     systemLog?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StreamSubscriptionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    selectedDays?: StreamSubscriptionUpdateselectedDaysInput | number[]
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    stream?: StreamUpdateOneRequiredWithoutSubscriptionsNestedInput
+  }
+
+  export type StreamSubscriptionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    streamId?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    selectedDays?: StreamSubscriptionUpdateselectedDaysInput | number[]
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StreamSubscriptionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    streamId?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    selectedDays?: StreamSubscriptionUpdateselectedDaysInput | number[]
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StreamSubscriptionCreateManyStreamInput = {
+    id?: string
+    userId: string
+    price: number
+    selectedDays?: StreamSubscriptionCreateselectedDaysInput | number[]
+    startDate: Date | string
+    cancelledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StreamSubscriptionUpdateWithoutStreamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    selectedDays?: StreamSubscriptionUpdateselectedDaysInput | number[]
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSubscriptionsNestedInput
+  }
+
+  export type StreamSubscriptionUncheckedUpdateWithoutStreamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    selectedDays?: StreamSubscriptionUpdateselectedDaysInput | number[]
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StreamSubscriptionUncheckedUpdateManyWithoutStreamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    selectedDays?: StreamSubscriptionUpdateselectedDaysInput | number[]
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

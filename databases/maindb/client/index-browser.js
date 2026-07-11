@@ -169,6 +169,34 @@ exports.Prisma.ActivityLogScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.StreamScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price',
+  excerpt: 'excerpt',
+  description: 'description',
+  marketingTitle: 'marketingTitle',
+  bulletPoints: 'bulletPoints',
+  imageUrl: 'imageUrl',
+  tags: 'tags',
+  status: 'status',
+  availability: 'availability',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StreamSubscriptionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  streamId: 'streamId',
+  price: 'price',
+  selectedDays: 'selectedDays',
+  startDate: 'startDate',
+  cancelledAt: 'cancelledAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -204,11 +232,22 @@ exports.ActivityLogEntityType = exports.$Enums.ActivityLogEntityType = {
   SESSION: 'SESSION'
 };
 
+exports.StreamStatus = exports.$Enums.StreamStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+};
+
+exports.StreamTag = exports.$Enums.StreamTag = {
+  NEWS: 'NEWS'
+};
+
 exports.Prisma.ModelName = {
   Test: 'Test',
   User: 'User',
   Session: 'Session',
-  ActivityLog: 'ActivityLog'
+  ActivityLog: 'ActivityLog',
+  Stream: 'Stream',
+  StreamSubscription: 'StreamSubscription'
 };
 
 /**

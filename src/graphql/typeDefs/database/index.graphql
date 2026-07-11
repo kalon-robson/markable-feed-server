@@ -19,6 +19,15 @@ enum ActivityLogEntityType {
   SESSION
 }
 
+enum StreamStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum StreamTag {
+  NEWS
+}
+
 type Test {
   id: String!
   text: String!
@@ -43,6 +52,7 @@ type User {
   deletedAt: Date
   sessions: [Session!]
   activityLogs: [ActivityLog!]
+  subscriptions: [StreamSubscription!]
 }
 
 type Session {
@@ -68,6 +78,37 @@ type ActivityLog {
   entityId: String!
   description: String
   systemLog: Boolean!
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type Stream {
+  id: String!
+  name: String!
+  price: Float!
+  excerpt: String!
+  description: String
+  marketingTitle: String
+  bulletPoints: [String!]
+  imageUrl: String
+  tags: [StreamTag!]
+  status: StreamStatus!
+  availability: [Int!]
+  createdAt: Date!
+  updatedAt: Date!
+  subscriptions: [StreamSubscription!]
+}
+
+type StreamSubscription {
+  id: String!
+  userId: String!
+  user: User!
+  streamId: String!
+  stream: Stream!
+  price: Float!
+  selectedDays: [Int!]
+  startDate: Date!
+  cancelledAt: Date
   createdAt: Date!
   updatedAt: Date!
 }

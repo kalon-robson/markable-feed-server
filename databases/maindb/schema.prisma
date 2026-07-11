@@ -32,22 +32,23 @@ enum UserRole {
 }
 
 model User {
-  id                       String        @id @default(cuid())
+  id                       String               @id @default(cuid())
   firstName                String
   lastName                 String
   email                    String
   password                 String?
-  status                   UserStatus    @default(ACTIVE)
-  role                     UserRole      @default(USER)
-  failedLoginAttempts      Int           @default(0)
+  status                   UserStatus           @default(ACTIVE)
+  role                     UserRole             @default(USER)
+  failedLoginAttempts      Int                  @default(0)
   lastLoginAttempt         DateTime?
   resetPasswordToken       String?
   resetPasswordTokenExpiry String?
-  createdAt                DateTime      @default(now())
-  updatedAt                DateTime      @updatedAt
+  createdAt                DateTime             @default(now())
+  updatedAt                DateTime             @updatedAt
   deletedAt                DateTime?
   sessions                 Session[]
   activityLogs             ActivityLog[]
+  subscriptions            StreamSubscription[]
 }
 
 model Session {
@@ -87,4 +88,44 @@ enum ActivityLogActionType {
 enum ActivityLogEntityType {
   USER
   SESSION
+}
+
+enum StreamStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum StreamTag {
+  NEWS
+}
+
+model Stream {
+  id             String               @id @default(cuid())
+  name           String
+  price          Float
+  excerpt        String
+  description    String?
+  marketingTitle String?
+  bulletPoints   String[]
+  imageUrl       String?
+  tags           StreamTag[]
+  status         StreamStatus         @default(ACTIVE)
+  availability   Int[]
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  subscriptions  StreamSubscription[]
+}
+
+model StreamSubscription {
+  id           String    @id @default(cuid())
+  userId       String
+  user         User      @relation(fields: [userId], references: [id])
+  streamId     String
+  stream       Stream    @relation(fields: [streamId], references: [id])
+  price        Float
+  selectedDays Int[]
+  startDate    DateTime
+  cancelledAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 }

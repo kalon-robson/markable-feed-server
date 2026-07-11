@@ -1,0 +1,212 @@
+[
+	{
+		"name": "Focus Flow 1",
+		"price": 29.99,
+		"excerpt": "Guided weekly stream for consistent progress.",
+		"bulletPoints": [
+			"Weekly guidance",
+			"Clear milestones",
+			"Progress tracking"
+		],
+		"tags": [
+			"NEWS"
+		],
+		"availability": [
+			1,
+			3,
+			5
+		]
+	},
+	{
+		"name": "Peak Path 2",
+		"price": 19.5,
+		"excerpt": "Lightweight stream designed for everyday routines.",
+		"bulletPoints": [
+			"Easy to start",
+			"Flexible routine"
+		],
+		"tags": [
+			"NEWS"
+		],
+		"availability": [
+			2,
+			4,
+			6
+		]
+	},
+	{
+		"name": "Rapid Track 3",
+		"price": 39.0,
+		"excerpt": "Short practical stream for busy schedules.",
+		"bulletPoints": [
+			"Practical tasks",
+			"Clear milestones",
+			"Weekly guidance"
+		],
+		"tags": [
+			"NEWS"
+		],
+		"availability": [
+			1,
+			2,
+			7
+		]
+	},
+	{
+		"name": "Steady Route 4",
+		"price": 24.75,
+		"excerpt": "Balanced stream with clear next steps.",
+		"bulletPoints": [
+			"Progress tracking",
+			"Flexible routine"
+		],
+		"tags": [
+			"NEWS"
+		],
+		"availability": [
+			3,
+			4,
+			5
+		]
+	},
+	{
+		"name": "Bright Series 5",
+		"price": 49.99,
+		"excerpt": "Simple stream that builds momentum quickly.",
+		"bulletPoints": [
+			"Weekly guidance",
+			"Practical tasks",
+			"Easy to start"
+		],
+		"tags": [
+			"NEWS"
+		],
+		"availability": [
+			2,
+			5,
+			6
+		]
+	},
+	{
+		"name": "Fresh Program 6",
+		"price": 15.0,
+		"excerpt": "Guided weekly stream for consistent progress.",
+		"bulletPoints": [
+			"Clear milestones",
+			"Flexible routine"
+		],
+		"tags": [
+			"NEWS"
+		],
+		"availability": [
+			1,
+			4,
+			7
+		]
+	},
+	{
+		"name": "Calm Cycle 7",
+		"price": 27.3,
+		"excerpt": "Lightweight stream designed for everyday routines.",
+		"bulletPoints": [
+			"Progress tracking",
+			"Practical tasks"
+		],
+		"tags": [
+			"NEWS"
+		],
+		"availability": [
+			2,
+			3,
+			6
+		]
+	},
+	{
+		"name": "Vital Plan 8",
+		"price": 34.45,
+		"excerpt": "Short practical stream for busy schedules.",
+		"bulletPoints": [
+			"Easy to start",
+			"Weekly guidance",
+			"Clear milestones"
+		],
+		"tags": [
+			"NEWS"
+		],
+		"availability": [
+			1,
+			5,
+			7
+		]
+	},
+	{
+		"name": "Core Pulse 9",
+		"price": 21.2,
+		"excerpt": "Balanced stream with clear next steps.",
+		"bulletPoints": [
+			"Flexible routine",
+			"Progress tracking"
+		],
+		"tags": [
+			"NEWS"
+		],
+		"availability": [
+			3,
+			6,
+			7
+		]
+	},
+	{
+		"name": "Smart Stream 10",
+		"price": 42.8,
+		"excerpt": "Simple stream that builds momentum quickly.",
+		"bulletPoints": [
+			"Practical tasks",
+			"Easy to start",
+			"Weekly guidance"
+		],
+		"tags": [
+			"NEWS"
+		],
+		"availability": [
+			1,
+			2,
+			4
+		]
+	},
+	{
+		"name": "Momentum Route 11",
+		"price": 31.6,
+		"excerpt": "Guided weekly stream for consistent progress.",
+		"bulletPoints": [
+			"Clear milestones",
+			"Progress tracking",
+			"Flexible routine"
+		],
+		"tags": [
+			"NEWS"
+		],
+		"availability": [
+			2,
+			4,
+			5
+		]
+	},
+	{
+		"name": "Anchor Track 12",
+		"price": 17.9,
+		"excerpt": "Lightweight stream designed for everyday routines.",
+		"bulletPoints": [
+			"Easy to start",
+			"Practical tasks"
+		],
+		"tags": [
+			"NEWS"
+		],
+		"availability": [
+			3,
+			5,
+			7
+		]
+	}
+]

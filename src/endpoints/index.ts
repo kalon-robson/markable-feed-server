@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import { Router } from 'express';
 import path from 'path';
 import { authRouter } from './auth/index.js';
+import { streamsRouter } from './stream/index.js';
 import { testsRouter } from './test/index.js';
 import swaggerRouter from '../routes/swagger.js';
 
@@ -18,6 +19,7 @@ export const endpointsRouter = (): Router => {
 		res.sendFile(path.resolve(__dirname, '../openapi.json'));
 	});
 	router.use('/auth', authRouter());
+	router.use('/streams', streamsRouter());
 
 
 	if (process.env.NODE_ENV !== 'production') {

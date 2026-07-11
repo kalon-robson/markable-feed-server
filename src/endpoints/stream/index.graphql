@@ -1,0 +1,9 @@
+type PaginatedStreams implements PaginatedDocs {
+	total: Int!
+	items: [Stream!]
+}
+
+type Query {
+	streams(limit: Int, offset: Int, where: Where, sortBy: String): PaginatedStreams!
+	stream(id: String!): Stream!
+}
