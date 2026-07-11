@@ -1,0 +1,20 @@
+[
+	{
+		"id": "cmn5vkyrw0003emn91u79yqoo",
+		"firstName": "Admin",
+		"lastName": "Istrator",
+		"email": "admin@innovixx.co.uk",
+		"status": "ACTIVE",
+		"password": "$2b$10$Pyb4T3ywEC2iq5GbNX1ivuCazwFZgZRuC7af8tzedZKa7bxQSwuWi",
+		"role": "ADMIN"
+	},
+	{
+		"id": "cmn5vkyrw0004emn991uacf6p",
+		"firstName": "Standard",
+		"lastName": "User",
+		"email": "user@innovixx.co.uk",
+		"status": "ACTIVE",
+		"password": "$2b$10$Pyb4T3ywEC2iq5GbNX1ivuCazwFZgZRuC7af8tzedZKa7bxQSwuWi",
+		"role": "USER"
+	}
+]
