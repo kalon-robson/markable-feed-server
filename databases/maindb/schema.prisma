@@ -21,3 +21,70 @@ model Test {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum UserRole {
+  USER
+}
+
+model User {
+  id                       String        @id @default(cuid())
+  firstName                String
+  lastName                 String
+  email                    String
+  password                 String?
+  status                   UserStatus    @default(ACTIVE)
+  role                     UserRole      @default(USER)
+  failedLoginAttempts      Int           @default(0)
+  lastLoginAttempt         DateTime?
+  resetPasswordToken       String?
+  resetPasswordTokenExpiry String?
+  createdAt                DateTime      @default(now())
+  updatedAt                DateTime      @updatedAt
+  deletedAt                DateTime?
+  sessions                 Session[]
+  activityLogs             ActivityLog[]
+}
+
+model Session {
+  id        String    @id @default(cuid())
+  token     String    @unique
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  ipAddress String?
+  userAgent String?
+  expiresAt DateTime
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model ActivityLog {
+  id          String                @id @default(cuid())
+  publicId    Int                   @unique @default(autoincrement())
+  userId      String?
+  user        User?                 @relation(fields: [userId], references: [id])
+  type        ActivityLogActionType
+  entityType  ActivityLogEntityType
+  entityId    String
+  description String?
+  systemLog   Boolean               @default(false)
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
+}
+
+enum ActivityLogActionType {
+  READ
+  CREATE
+  UPDATE
+  DELETE
+}
+
+enum ActivityLogEntityType {
+  USER
+  SESSION
+}

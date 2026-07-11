@@ -1,0 +1,37 @@
+type Viewer {
+	id: ID
+	firstName: String
+	lastName: String
+	email: String
+	token: String
+	role: UserRole
+	redirectTo: String
+	didRequest: Boolean!
+}
+
+type Query {
+	viewer: Viewer!
+}
+
+type Mutation {
+	login(email: String, password: String): Viewer!
+	logout: Boolean!
+}type Viewer {
+	id: ID
+	firstName: String
+	lastName: String
+	email: String
+	token: String
+	role: UserRole
+	redirectTo: String
+	didRequest: Boolean!
+}
+
+type Query {
+	viewer: Viewer!
+}
+
+type Mutation {
+	login(email: String, password: String): Viewer!
+	logout: Boolean!
+}

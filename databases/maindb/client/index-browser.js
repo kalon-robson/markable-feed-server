@@ -127,6 +127,48 @@ exports.Prisma.TestScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  email: 'email',
+  password: 'password',
+  status: 'status',
+  role: 'role',
+  failedLoginAttempts: 'failedLoginAttempts',
+  lastLoginAttempt: 'lastLoginAttempt',
+  resetPasswordToken: 'resetPasswordToken',
+  resetPasswordTokenExpiry: 'resetPasswordTokenExpiry',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+};
+
+exports.Prisma.SessionScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  userId: 'userId',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+};
+
+exports.Prisma.ActivityLogScalarFieldEnum = {
+  id: 'id',
+  publicId: 'publicId',
+  userId: 'userId',
+  type: 'type',
+  entityType: 'entityType',
+  entityId: 'entityId',
+  description: 'description',
+  systemLog: 'systemLog',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -137,9 +179,36 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.UserStatus = exports.$Enums.UserStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+};
+
+exports.UserRole = exports.$Enums.UserRole = {
+  USER: 'USER'
+};
+
+exports.ActivityLogActionType = exports.$Enums.ActivityLogActionType = {
+  READ: 'READ',
+  CREATE: 'CREATE',
+  UPDATE: 'UPDATE',
+  DELETE: 'DELETE'
+};
+
+exports.ActivityLogEntityType = exports.$Enums.ActivityLogEntityType = {
+  USER: 'USER',
+  SESSION: 'SESSION'
+};
 
 exports.Prisma.ModelName = {
-  Test: 'Test'
+  Test: 'Test',
+  User: 'User',
+  Session: 'Session',
+  ActivityLog: 'ActivityLog'
 };
 
 /**
