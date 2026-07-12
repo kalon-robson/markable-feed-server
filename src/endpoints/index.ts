@@ -5,6 +5,7 @@ import path from 'path';
 import { authRouter } from './auth/index.js';
 import { streamsRouter } from './stream/index.js';
 import { testsRouter } from './test/index.js';
+import { usersRouter } from './user/index.js';
 import swaggerRouter from '../routes/swagger.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -19,6 +20,7 @@ export const endpointsRouter = (): Router => {
 		res.sendFile(path.resolve(__dirname, '../openapi.json'));
 	});
 	router.use('/auth', authRouter());
+	router.use('/user', usersRouter());
 	router.use('/streams', streamsRouter());
 
 
